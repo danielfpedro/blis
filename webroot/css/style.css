@@ -1,0 +1,37 @@
+
+.grid-item {
+	width: 33.3333333333%;
+	margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+	.grid-item {
+		width: 100%;
+	}	
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.grid-item {
+		width: 50%;
+	}	
+}
+@media (min-width: 992px) and (max-width: 1999px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+.offse-to-top {
+	margin-top: 60px;
+}
+.grid {
+	/*margin: 0 6px;*/
+}
+.card-image {
+	height: 200px;
+	background-size: cover;
+	background-position: top center;
+}
+.grid-item-wrap {
+	margin-right: 20px;	
+	background-color: red;
+}
