@@ -6,6 +6,13 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+use Cake\Filesystem\Folder;
+
+use Cake\Event\Event;
+use Cake\Datasource\EntityInterface;
+
+use WideImage\WideImage;
+
 /**
  * Posts Model
  *
@@ -51,6 +58,93 @@ class PostsTable extends Table
         ]);
     }
 
+    public function recents($page = 1, $total, $notIn = [])
+    {
+        $conditions = [];
+        if ($notIn) {
+            $conditions['Posts.id NOT IN'] = $notIn;
+        }
+        return $this
+            ->find('all', [
+                'conditions' => $conditions,
+                'order' => ['Posts.pub_date' => 'DESC'],
+                'offset' => $total * ($page - 1),
+                'limit' => $total
+            ]);
+    }
+
+    public function getBySlug($request)
+    {
+        $posts = $this->find('all', [
+            'fields' => ['Posts.id', 'Posts.pub_date'],
+            'conditions' => [
+                'slug' => $request->param('slug')
+            ]            
+        ]);
+
+        if ($posts) {
+            $slugDate = new \Datetime($request->param('year') . '-' . $request->param('month') . '-' . $request->param('day'));
+
+            foreach ($posts as $key => $value) {
+                if ($value->pub_date && $value->pub_date->format('Y-m-d') == $slugDate->format('Y-m-d')) {
+
+                    return $this->find('all', [
+                        'conditions' => [
+                            'Posts.id' => (int)$value->id
+                        ]
+                    ])
+                    ->first();
+                }
+            }
+        }
+
+        return null; 
+    }
+
+    public function populars($page = 1, $total, $notIn = [])
+    {
+        $conditions = [];
+
+        if ($notIn) {
+            $conditions['Posts.id NOT IN'] = $notIn;
+        } 
+
+        $pastDate = new \Datetime();
+        $pastDate->sub(new \DateInterval('P7D'));
+
+        $conditions['Posts.view_timestamp >='] = $pastDate;
+
+        return $this
+            ->find('all', [
+                'conditions' => $conditions,
+                'order' => ['Posts.views DESC'],
+                'offset' => $total * ($page - 1),
+                'limit' => $total
+            ]);
+    }
+
+    public function beforeSave(Event $event, EntityInterface $entity)
+    {
+        $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
+        $image = WideImage::load($entity->img);
+        $imageSquared = WideImage::load($entity->img);
+
+        $ext = pathinfo($entity->img, PATHINFO_EXTENSION);
+        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $entity->img) . '.' . $ext;
+
+        $image
+            ->resize(600, 300, 'outside')
+            ->crop('center', 'top', 600, 300)
+            ->saveToFile($dir->path . DS . $imageName);
+
+        $imageSquared
+            ->resize(200, 200, 'outside')
+            ->crop('center', 'top', 200, 200)
+            ->saveToFile($dir->path . DS . 'square_' . $imageName);
+
+        $entity->photo = $imageName;
+    }
+
     /**
      * Default validation rules.
      *
@@ -70,7 +164,7 @@ class PostsTable extends Table
             ->allowEmpty('subtitle');
 
         $validator
-            ->allowEmpty('img');
+            ->notEmpty('img');
 
         $validator
             ->allowEmpty('tags');

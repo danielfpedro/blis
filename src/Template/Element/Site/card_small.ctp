@@ -1,15 +1,15 @@
 <?php foreach ($posts as $key => $post): ?>
 	<div class="media">
 		<div class="media-left">
-			<a href="#">
-				<img src="<?= $post['img'] ?>" class="media-object" width="140">
+			<a href="<?= $this->Url->build($post->viewUrl) ?>">
+				<img src="<?= $post->squaredImagePath ?>" class="media-object card-small-image">
 			</a>
 		</div>
 		<div class="media-body">
-			<a href="<?= $post['url'] ?>" target="_blank">
-				<h4 class="media-heading">
+			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank" class="article-title-small">
+				<h1 class="media-heading">
 					<?= $post['title'] ?>
-				</h4>
+				</h1>
 			</a>
 		</div>
 	</div>

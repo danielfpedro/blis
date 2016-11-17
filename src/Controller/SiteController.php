@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 class SiteController extends AppController
 {
@@ -12,18 +13,28 @@ class SiteController extends AppController
 	{
 		parent::beforeFilter($event);
 		$this->viewBuilder()->layout('site');
+
+		$this->loadModel('Posts');
 	}
 	public function home()
 	{
-		$this->loadModel('Posts');
+		
+	}
+	public function loadMore()
+	{
+		$this->viewBuilder()->layout('ajax');
 
-		$posts = $this->Posts->find('all');
+		$notIn = [];
+		if ($this->request->query('not_in')) {
+			$notIn = explode(',', $this->request->query('not_in'));
+		};
+
+		$posts = $this->Posts->populars((int)$this->request->query('page'), 15, $notIn);
 
 		$this->set(['posts' => $posts]);
 	}
 	public function category()
 	{
-		$this->loadModel('Posts');
 
 		$posts = $this->Posts->find('all');
 
@@ -31,29 +42,43 @@ class SiteController extends AppController
 	}
 	public function post()
 	{
-		$this->loadModel('Posts');
 
-		$posts = $this->Posts->find('all');
+		$mainPost = $this->Posts->getBySlug($this->request);
 
-		$this->set(['posts' => $posts]);
+		if (!$mainPost) {
+			throw new NotFoundException();
+		}
+
+		$this->set(['mainPost' => $mainPost]);
 	}
-	public function loadMore()
+	public function view()
 	{
-		$this->viewBuilder()->layout('ajax');
 
-		$this->loadModel('Posts');
+		$post = $this->Posts->getBySlug($this->request);
 
-		$posts = $this->Posts->find('all');
+		if (!$post) {
+			throw new NotFoundException();
+		}
+		
+		$post->views = (int)$post->views + 1;
+		$post->view_timestamp = (new \Datetime())->format('Y-m-d H:i:s');
 
-		$this->set(['posts' => $posts]);
+		if ($this->Posts->save($post)) {
+			return $this->redirect($post->url);
+		}
+		throw new \Exception('Erro ao salvar o view.');
 	}
+
 	public function loadMoreSmall()
 	{
 		$this->viewBuilder()->layout('ajax');
 
-		$this->loadModel('Posts');
-
-		$posts = $this->Posts->find('all');
+		$notIn = [];
+		if ($this->request->query('not_in')) {
+			$notIn = explode(',', $this->request->query('not_in'));
+		};
+		
+		$posts = $this->Posts->recents((int)$this->request->query('page'), 15, $notIn);
 
 		$this->set(['posts' => $posts]);
 	}

@@ -32,6 +32,7 @@
             echo $this->Form->input('subtitle');
             echo $this->Form->input('img');
             echo $this->Form->input('tags');
+            echo $this->Form->input('pub_date');
             echo $this->Form->input('category_id', ['options' => $categories]);
             echo $this->Form->input('source_id', ['options' => $sources]);
         ?>

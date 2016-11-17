@@ -5,6 +5,7 @@ use Cake\ORM\Entity;
 
 use Cake\Utility\Inflector;
 
+use Cake\View\Helper\HtmlHelper;
 /**
  * Post Entity
  *
@@ -44,5 +45,26 @@ class Post extends Entity
         $this->set('slug', strtolower(Inflector::slug($title)));
         return $title;
     }
-
+    protected function _getViewUrl()
+    {
+        if (!$this->_properties['pub_date']) {
+            return [];
+        }
+        return [
+            'controller' => 'Site',
+            'action' => 'view',
+            'year' => $this->_properties['pub_date']->format('Y'),
+            'month' => $this->_properties['pub_date']->format('m'),
+            'day' => $this->_properties['pub_date']->format('d'),
+            'slug' => $this->_properties['slug'],
+        ];
+    }
+    protected function _getImagePath()
+    {
+        return 'files/images/' . $this->_properties['photo'];
+    }
+    protected function _getSquaredImagePath()
+    {
+        return 'files/images/square_' . $this->_properties['photo'];
+    }
 }

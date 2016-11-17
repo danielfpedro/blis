@@ -1,9 +1,25 @@
-
+body {
+	background-color: #F8F8F8!important;
+	font-family: 'Rubik', sans-serif;
+	padding-top: 50px;
+}
 .grid-item {
-	width: 33.3333333333%;
-	margin-bottom: 10px;
+	overflow: hidden;
+	height: auto;
+	width: 33.33333%;
+	/*background-color: blue;*/
 }
 
+.card-small-image {
+	width: 70px;
+}
+
+.col-md-9 {
+	width: 78%;
+}
+.col-md-3 {
+	width: 22%;
+}
 @media (max-width: 767px) {
 	.grid-item {
 		width: 100%;
@@ -13,25 +29,119 @@
 	.grid-item {
 		width: 50%;
 	}	
+	.card-small-image {
+		width: 50px;
+	}
 }
 @media (min-width: 992px) and (max-width: 1999px) {
-
 }
 @media (min-width: 1200px) {
 
 }
-.offse-to-top {
-	margin-top: 60px;
+.offset-to-top {
+	margin-top: 50px;
 }
 .grid {
 	/*margin: 0 6px;*/
+	position: relative;
+	overflow: hidden;
+	height: auto;
+}
+.grid-item-wrap {
+	margin-right: 25px;
+	/*margin-bottom: 15px;*/
+	background-color: red;
+	overflow: hidden;
+}
+
+.horizontal-banner {
+	height: 100px;
+	width: 100%;
+	background-color: pink;
+}
+
+.section-title {
+	margin: 0;
+	font-weight: bold;
+	font-size: 20px;
+	color: #000;
+	margin-bottom: 32px;
+	text-transform: uppercase;
+	font-family: 'Dosis', sans-serif!important;
+}
+
+/*Article main*/
+.article-wrap {
+	border: 1px solid #dfdfdf;
+	background-color: #F8F8F8;
+
+	/*-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);*/
 }
 .card-image {
-	height: 200px;
+	margin: 0;
+	padding: 0;
+	height: 170px;
 	background-size: cover;
 	background-position: top center;
 }
-.grid-item-wrap {
-	margin-right: 20px;	
-	background-color: red;
+a.article-title {
+	text-decoration: none;
+}
+.article-title > h1{
+	margin: 0;
+	padding: 0;
+
+	padding-top: 15px;
+	padding-bottom: 10px;
+
+	font-weight: 500;
+	font-size: 22px;
+	color: #424242;
+	color: #000;
+	line-height: 28px;
+}
+
+.article-subtitle {
+	font-size: 15px;
+	color: #424242;
+	margin: 0;
+}
+.article-body {
+	padding: 0 20px 30px 20px;
+	
+}
+
+/*Article Small*/
+a.article-title-small {
+	text-decoration: none;
+}
+.article-title-small > h1 {
+	font-size: 14px;
+	line-height: 22px;
+	color: #424242;
+	/*font-weight: bold;*/
+}
+/*Navbar*/
+.navbar ul.navbar-nav > li > a {
+	font-size: 16px;
+	color: #000;
+}
+.navbar-default {
+    /*background-color: #000;*/
+    border-color: #dfdfdf;
+}
+.navbar-social-items {
+	line-height: 10;
+}
+.navbar-social-items > li {
+	line-height: 0;
+}
+.navbar-social-items > li > a{
+	line-height: 0;
+}
+.navbar-social-items > li > a > span{
+	line-height: 20px;
+	font-size: 20px!important;
 }

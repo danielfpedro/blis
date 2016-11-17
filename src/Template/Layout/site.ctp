@@ -8,11 +8,14 @@
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Rubik:400,500,700" rel="stylesheet">
 
     <?= $this->Html->css('../lib/bootstrap/dist/css/bootstrap.min') ?>
 
     <?= $this->Html->css('style') ?>
+    <?= $this->Html->css('../lib/font-awesome/css/font-awesome.min') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

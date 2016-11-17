@@ -8,7 +8,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <?= $this->Html->link('Brand', ['controller' => 'Site', 'action' => 'home'], ['class' => 'navbar-brand']) ?>
+            <?= $this->Html->link('MASHABLE', [
+                    'controller' => 'Site',
+                    'action' => 'home'
+                ],
+                [
+                    'class' => 'navbar-brand'
+            ]) ?>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,19 +32,23 @@
                         ?>
                     </li>
                 <?php endforeach ?>
-                
-<!--                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li> -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right navbar-social-items">
+                <li>
+                    <a href="">
+                        <span class="fa fa-facebook"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="fa fa-twitter"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="fa fa-youtube-play"></span>
+                    </a>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
