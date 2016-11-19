@@ -11,11 +11,11 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
         "davidyell/proffer": "~0.6",
-        "smottt/wideimage": "^1.1"
+        "smottt/wideimage": "^1.1",
+        "cakephp/debug_kit": "~3.2"
     },
     "require-dev": {
         "psy/psysh": "@stable",
-        "cakephp/debug_kit": "~3.2",
         "cakephp/bake": "~1.1"
     },
     "suggest": {
