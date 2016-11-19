@@ -64,9 +64,11 @@ class SiteController extends AppController
 		$post->view_timestamp = (new \Datetime())->format('Y-m-d H:i:s');
 
 		if ($this->Posts->save($post)) {
-			return $this->redirect($post->url);
+			return $this->redirect($post->url);			
+		} else {
+			throw new \Exception('Erro ao salvar o view.');
 		}
-		throw new \Exception('Erro ao salvar o view.');
+		
 	}
 
 	public function loadMoreSmall()

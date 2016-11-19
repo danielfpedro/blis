@@ -14,12 +14,16 @@ body {
 	width: 60px;
 }
 
-.col-md-9 {
-	width: 78%;
-}
-.col-md-3 {
-	width: 21%;
-}
+	.col-md-9 {
+		width: 78%;
+	}
+	.col-md-3 {
+		width: 21%;
+	}
+	.col-small {
+		margin-left: -15px
+	}
+
 @media (max-width: 767px) {
 	.grid-item {
 		width: 100%;
@@ -32,12 +36,19 @@ body {
 	.card-small-image {
 		width: 50px;
 	}
+
 }
 @media (min-width: 992px) and (max-width: 1999px) {
+
 }
 @media (min-width: 1200px) {
 
 }
+
+.card-image {
+	background-color: #BDBDBD;
+}
+
 .offset-to-top {
 	margin-top: 40px;
 }
@@ -50,7 +61,7 @@ body {
 .grid-item-wrap {
 	margin-right: 25px;
 	/*margin-bottom: 15px;*/
-	background-color: red;
+	/*background-color: red;*/
 	overflow: hidden;
 }
 
@@ -161,7 +172,4 @@ a.article-title-small {
 }
 .navbar-brand {
 	margin-top: -3px;
-}
-.col-small {
-	margin-left: -15px
 }
