@@ -16,7 +16,11 @@
     <?= $this->Html->css('../lib/bootstrap/dist/css/bootstrap.min') ?>
 
     <?= $this->Html->css('style') ?>
-    <?= $this->Html->css('../lib/font-awesome/css/font-awesome.min') ?>
+    <?php if (filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN)): ?>
+        <?= $this->Html->css('../lib/font-awesome/css/font-awesome.min') ?>
+    <?php else: ?>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <?php endif ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

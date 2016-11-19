@@ -1,7 +1,7 @@
 <?php foreach ($posts as $key => $post): ?>
 	<div class="media">
 		<div class="media-left">
-			<a href="<?= $this->Url->build($post->viewUrl) ?>">
+			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
 				<img src="<?= $post->squaredImagePath ?>" class="media-object card-small-image">
 			</a>
 		</div>
