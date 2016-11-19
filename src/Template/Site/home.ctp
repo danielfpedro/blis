@@ -1,4 +1,4 @@
-<?= $this->assign('title', 'Blis - Descubra os melhores conteúdos sobre a Cultura Pop') ?>
+<?= $this->assign('title', 'Blizz - Descubra os melhores conteúdos sobre a Cultura Pop') ?>
 <?= $this->Html->script('Site/home', ['block' => true]) ?>
 
 <?= $this->cell('Navbar') ?>
@@ -12,7 +12,9 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-9 col-sm-9">
-			<h2 class="section-title">Populares</h2>
+			<div class="section-title">
+				Populares
+			</div>
 			<?= $this->cell('MainPosts') ?>
 
 			<div
@@ -21,10 +23,10 @@
 				data-page="2">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3" style="margin-left: -15px">
-			<h2 class="section-title">
+		<div class="col-md-3 col-sm-3 col-small">
+			<div class="section-title">
 				Últimas
-			</h2>
+			</div>
 			<div id="load-more-small-container">
 				<?= $this->cell('RecentPosts') ?>
 			</div>

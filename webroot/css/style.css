@@ -1,6 +1,6 @@
 body {
 	background-color: #F8F8F8!important;
-	font-family: 'Rubik', sans-serif;
+	font-family: 'Bree Serif', serif;
 	padding-top: 50px;
 }
 .grid-item {
@@ -11,14 +11,14 @@ body {
 }
 
 .card-small-image {
-	width: 70px;
+	width: 60px;
 }
 
 .col-md-9 {
 	width: 78%;
 }
 .col-md-3 {
-	width: 22%;
+	width: 21%;
 }
 @media (max-width: 767px) {
 	.grid-item {
@@ -39,7 +39,7 @@ body {
 
 }
 .offset-to-top {
-	margin-top: 50px;
+	margin-top: 40px;
 }
 .grid {
 	/*margin: 0 6px;*/
@@ -62,12 +62,12 @@ body {
 
 .section-title {
 	margin: 0;
-	font-weight: bold;
-	font-size: 20px;
-	color: #000;
-	margin-bottom: 32px;
+	font-size: 13px;
+	color: #d50000;
+	margin-bottom: 15px;
 	text-transform: uppercase;
-	font-family: 'Dosis', sans-serif!important;
+	font-weight: 500;
+	font-family: 'Rubik', sans-serif!important;
 }
 
 /*Article main*/
@@ -97,16 +97,17 @@ a.article-title {
 	padding-bottom: 10px;
 
 	font-weight: 500;
-	font-size: 22px;
-	color: #424242;
-	color: #000;
+	font-size: 24px;
+	color: #212121;
 	line-height: 28px;
 }
 
 .article-subtitle {
-	font-size: 15px;
-	color: #424242;
+	font-size: 14px;
+	color: #757575;
 	margin: 0;
+	font-weight: normal;
+	font-family: 'Bree Serif', serif;	
 }
 .article-body {
 	padding: 0 20px 30px 20px;
@@ -118,15 +119,16 @@ a.article-title-small {
 	text-decoration: none;
 }
 .article-title-small > h1 {
-	font-size: 14px;
+	font-size: 15px;
 	line-height: 22px;
-	color: #424242;
+	color: #212121;
 	/*font-weight: bold;*/
 }
 /*Navbar*/
 .navbar ul.navbar-nav > li > a {
-	font-size: 16px;
-	color: #000;
+	font-size: 14px;
+	color: #212121;
+	font-family: 'Rubik', sans-serif!important;
 }
 .navbar-default {
     /*background-color: #000;*/
@@ -137,11 +139,29 @@ a.article-title-small {
 }
 .navbar-social-items > li {
 	line-height: 0;
+	margin-left: -5px;
+
 }
 .navbar-social-items > li > a{
 	line-height: 0;
 }
 .navbar-social-items > li > a > span{
-	line-height: 20px;
-	font-size: 20px!important;
+	line-height: 18px;
+	font-size: 18px!important;
+	color: #616161;
+}
+.navbar-social-items > li > a > span.fa-facebook:hover{
+	color: #01579B;
+}
+.navbar-social-items > li > a > span.fa-twitter:hover{
+	color: #039BE5
+}
+.navbar-social-items > li > a > span.fa-youtube-play:hover{
+	color: #D50000;
+}
+.navbar-brand {
+	margin-top: -3px;
+}
+.col-small {
+	margin-left: -15px
 }

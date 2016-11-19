@@ -8,9 +8,10 @@
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dosis:400,700|Rubik:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif:400,500,700" rel="stylesheet">
 
     <?= $this->Html->css('../lib/bootstrap/dist/css/bootstrap.min') ?>
 
@@ -25,6 +26,8 @@
     <?= $this->fetch('content') ?>
 
     <?= $this->Html->script('../lib/jquery/dist/jquery.min') ?>
+    <?= $this->Html->script('../lib/bootstrap/dist/js/bootstrap.min') ?>
+
     <?= $this->Html->script('../lib/masonry/dist/masonry.pkgd.min') ?>
 
     <?= $this->fetch('script') ?>

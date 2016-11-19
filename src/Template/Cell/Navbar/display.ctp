@@ -8,13 +8,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <?= $this->Html->link('MASHABLE', [
-                    'controller' => 'Site',
-                    'action' => 'home'
-                ],
-                [
-                    'class' => 'navbar-brand'
+            <?php
+                $image = $this->Html->image('logo.png', ['width' => 85, 'class' => 'brand'])
+            ?>
+            <?= $this->Html->link($image, [
+                'controller' => 'Site',
+                'action' => 'home'
+            ],
+            [
+                'class' => 'navbar-brand',
+                'title' => 'Blizz',
+                'escape' => false
             ]) ?>
+
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
