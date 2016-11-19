@@ -12,10 +12,10 @@
         "cakephp/plugin-installer": "*",
         "davidyell/proffer": "~0.6",
         "smottt/wideimage": "^1.1",
-        "cakephp/debug_kit": "~3.2"
+        "cakephp/debug_kit": "~3.2",
+        "psy/psysh": "@stable"
     },
     "require-dev": {
-        "psy/psysh": "@stable",
         "cakephp/bake": "~1.1"
     },
     "suggest": {
