@@ -7,7 +7,7 @@
 					class="card-image"
 					style="background-image: url(<?= $this->Url->build($post->imagePath) ?>)">
 				</div> -->
-				<div style="background-color: red; height: auto; min-height: 200px;">
+				<div style="background-color: red; height: auto; min-height: 150px;">
 					<img
 						style="width: 100%; height: 100%;"
 						class="card-image-async"
