@@ -58,12 +58,17 @@ class PostsTable extends Table
         ]);
     }
 
-    public function recents($page = 1, $total, $notIn = [])
+    public function recents($page = 1, $total, $notIn = [], $category = [])
     {
         $conditions = [];
+
         if ($notIn) {
             $conditions['Posts.id NOT IN'] = $notIn;
         }
+        if ($category) {
+            $conditions['Posts.category_id'] = $category->id;
+        }
+
         return $this
             ->find('all', [
                 'conditions' => $conditions,
@@ -101,13 +106,16 @@ class PostsTable extends Table
         return null; 
     }
 
-    public function populars($page = 1, $total, $notIn = [])
+    public function populars($page = 1, $total, $notIn = [], $category = [])
     {
         $conditions = [];
 
         if ($notIn) {
             $conditions['Posts.id NOT IN'] = $notIn;
         } 
+        if ($category) {
+            $conditions['Posts.category_id'] = $category->id;
+        }
 
         $pastDate = new \Datetime();
         $pastDate->sub(new \DateInterval('P7D'));
@@ -116,6 +124,19 @@ class PostsTable extends Table
 
         return $this
             ->find('all', [
+                'fields' => [
+                    'Posts.id',
+                    'Posts.title',
+                    'Posts.subtitle',
+                    'Posts.slug',
+                    'Posts.pub_date',
+                    'Posts.photo',
+                ],
+                'contain' => [
+                    'Categories' => function($q){
+                        return $q->select(['id', 'name', 'slug']);
+                    }
+                ],
                 'conditions' => $conditions,
                 'order' => ['Posts.views DESC'],
                 'offset' => $total * ($page - 1),

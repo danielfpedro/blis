@@ -45,6 +45,19 @@ class CategoriesTable extends Table
         ]);
     }
 
+    public function getBySlug($request)
+    {
+        return $this->find('all', [
+            'fields' => [
+                'Categories.id',
+                'Categories.name'
+            ],
+            'conditions' => [
+                'Categories.slug' => $request->param('slug')
+            ]
+        ])->first();
+    }
+
     /**
      * Default validation rules.
      *

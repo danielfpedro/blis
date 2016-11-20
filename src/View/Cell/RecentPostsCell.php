@@ -22,11 +22,11 @@ class RecentPostsCell extends Cell
      *
      * @return void
      */
-    public function display($notIn = [])
+    public function display($notIn = [], $category = [])
     {
         $this->loadModel('Posts');
 
-        $posts = $this->Posts->recents(1, 15, $notIn);
+        $posts = $this->Posts->recents(1, 15, $notIn, $category);
 
         $this->set(compact('posts'));
     }

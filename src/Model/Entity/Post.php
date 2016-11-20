@@ -61,10 +61,10 @@ class Post extends Entity
     }
     protected function _getImagePath()
     {
-        return 'files/images/' . $this->_properties['photo'];
+        return '/files/images/' . $this->_properties['photo'];
     }
     protected function _getSquaredImagePath()
     {
-        return 'files/images/square_' . $this->_properties['photo'];
+        return '/files/images/square_' . $this->_properties['photo'];
     }
 }

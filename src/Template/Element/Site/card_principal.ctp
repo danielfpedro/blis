@@ -5,10 +5,19 @@
 			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
 				<div
 					class="card-image"
-					style="background-image: url(<?= $post->imagePath ?>)">
+					style="background-image: url(<?= $this->Url->build($post->imagePath) ?>)">
 				</div>
 			</a>
 			<div class="article-body">
+				<?php if ($showCategoryName): ?>
+					<?= $this->Html->link($post->category->name, [
+						'controller' => 'Site',
+						'action' => 'category',
+						'slug' => $post->category->slug
+					], [
+						'class' => 'article-category'
+					]) ?>
+				<?php endif ?>
 				<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank" class="article-title">
 					<h1>
 						<?= $post['title'] ?>

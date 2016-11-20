@@ -35,10 +35,15 @@ class SiteController extends AppController
 	}
 	public function category()
 	{
+		$this->loadModel('Categories');
 
-		$posts = $this->Posts->find('all');
+		$category = $this->Categories->getBySlug($this->request);
 
-		$this->set(['posts' => $posts]);
+		if (!$category) {
+			throw new NotFoundException();
+			
+		}
+		$this->set(compact('category'));
 	}
 	public function post()
 	{

@@ -3,6 +3,8 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
+use Cake\Utility\Inflector;
+
 /**
  * Category Entity
  *
@@ -29,4 +31,10 @@ class Category extends Entity
         '*' => true,
         'id' => false
     ];
+
+    protected function _setName($name)
+    {
+        $this->set('slug', strtolower(Inflector::slug($name)));
+        return $name;
+    }
 }

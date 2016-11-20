@@ -22,12 +22,14 @@ class MainPostsCell extends Cell
      *
      * @return void
      */
-    public function display($notIn = [])
+    public function display($notIn = [], $category = [])
     {
         $this->loadModel('Posts');
 
-        $posts = $this->Posts->populars(1, 15, $notIn);
+        $posts = $this->Posts->populars(1, 15, $notIn, $category);
 
-        $this->set(compact('posts'));
+        $showCategoryName = !($category);
+
+        $this->set(compact('posts', 'showCategoryName'));
     }
 }

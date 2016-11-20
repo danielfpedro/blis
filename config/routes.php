@@ -65,7 +65,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/:slug', ['controller' => 'Site', 'action' => 'category']);
     $routes->connect('/:year/:month/:day/:slug', ['controller' => 'Site', 'action' => 'post']);
-    $routes->connect('/view/:year/:month/:day/:slug', ['controller' => 'Site', 'action' => 'view']);
+    $routes->connect('/v/:year/:month/:day/:slug', ['controller' => 'Site', 'action' => 'view']);
 
     /**
      * Connect catchall routes for all controllers.

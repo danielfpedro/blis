@@ -1,61 +1,69 @@
+<?= $this->assign('title', $mainPost->title . ' - Blizz') ?>
 <?= $this->Html->script('Site/home', ['block' => true]) ?>
 
 <?= $this->cell('Navbar') ?>
 
-<div class="offse-to-top"></div>
-
-<div class="horizontal-banner">
-	
-</div>
+<div class="offset-to-top"></div>
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-2">
+		<div class="col-md-6 col-md-offset-3">
 			<div class="" style="width: 100%">
 				<a href="<?= $this->Url->build($mainPost->viewUrl) ?>" target="_blank">
 					<div
 						class="card-image"
-						style="background-image: url(<?= $mainPost->imagePath ?>)">
+						style="height: 250px; background-image: url(<?= $this->Url->build($mainPost->imagePath) ?>)">
 					</div>
-					<h3>
-						<?= $mainPost->title ?>
-					</h3>
-					<p>
+					<a href="<?= $this->Url->build($mainPost->viewUrl) ?>" class="main-post-title">
+						<h1>
+							<?= $mainPost->title ?>
+						</h1>
+					</a>
+					<!-- <p>
 						<?= $mainPost->subtitle ?>
-					</p>
+					</p> -->
 				</a>
 			</div>
 		</div>
 	</div>
 </div>
 
+<div class="offset-to-top"></div>
+<div class="offset-to-top"></div>
+<div class="offset-to-top"></div>
+<div class="offset-to-top"></div>
+
+<!-- <div class="horizontal-banner">
+	
+</div> -->
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-9 col-sm-9">
-			<h2>Populares</h2>
-			<?= $this->cell('MainPosts', ['notIn' => [(int)$mainPost->id]]) ?>
-			<h1
+			<div class="section-title">
+				Populares
+			</div>
+			<?= $this->cell('MainPosts') ?>
+
+			<div
 				class="load-more"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMore']) ?>"
-				data-not-in="<?= (int)$mainPost->id ?>"
 				data-page="2">
-				Load More
-			</h1>
+			</div>
 		</div>
+		<div class="col-md-3 col-sm-3 col-small">
+			<div class="section-title">
+				Últimas
+			</div>
+			<div id="load-more-small-container">
+				<?= $this->cell('RecentPosts') ?>
+			</div>
 
-		<div class="col-md-3 col-sm-3" style="margin-left: -15px">
-			<h2>
-				Recentes
-			</h2>
-			<?= $this->cell('RecentPosts', ['notIn' => [(int)$mainPost->id]]) ?>
-			<div id="load-more-small-container"></div>
-			<h1
+			<div
 				class="load-more-small"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMoreSmall']) ?>"
-				data-not-in="<?= (int)$mainPost->id ?>"
 				data-page="2">
-				Load More
-			</h1>	
+			</div>	
 
 		</div>
 	</div>

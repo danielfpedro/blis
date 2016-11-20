@@ -1,5 +1,5 @@
 body {
-	background-color: #F8F8F8!important;
+	background-color: #f2f2f2!important;
 	font-family: 'Bree Serif', serif;
 	padding-top: 50px;
 }
@@ -70,6 +70,15 @@ body {
 	width: 100%;
 	background-color: pink;
 }
+.title-category {
+	margin: 0;
+	font-size: 22px;
+	color: #757575;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-family: 'Rubik', sans-serif!important;	
+}
 
 .section-title {
 	margin: 0;
@@ -96,15 +105,35 @@ body {
 	height: 170px;
 	background-size: cover;
 	background-position: top center;
+
+	margin-bottom: 10px;
+}
+a.article-small-category {
+	font-family: 'Rubik', sans-serif!important;
+	text-transform: uppercase;
+	font-size: 9px;
+	color: #757575;	
+	margin: 0:
+	padding: 0;
+}
+a.article-category {
+	font-family: 'Rubik', sans-serif!important;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #757575;
 }
 a.article-title {
+	color: #212121;
 	text-decoration: none;
+}
+a.article-title:hover {
+	text-decoration: underline;
 }
 .article-title > h1{
 	margin: 0;
 	padding: 0;
 
-	padding-top: 15px;
+	/*padding-top: 15px;*/
 	padding-bottom: 10px;
 
 	font-weight: 500;
@@ -113,12 +142,13 @@ a.article-title {
 	line-height: 28px;
 }
 
+
 .article-subtitle {
 	font-size: 14px;
 	color: #757575;
 	margin: 0;
 	font-weight: normal;
-	font-family: 'Bree Serif', serif;	
+	font-family: 'Rubik', sans-serif!important;
 }
 .article-body {
 	padding: 0 20px 30px 20px;
@@ -171,5 +201,25 @@ a.article-title-small {
 	color: #D50000;
 }
 .navbar-brand {
-	margin-top: -3px;
+	margin-top: -1px;
+}
+
+a.main-post-title {
+	color: #212121;
+	text-decoration: none;
+}
+a.main-post-title:hover {
+	text-decoration: underline;
+}
+.main-post-title > h1{
+	margin: 0;
+	padding: 0;
+
+	/*padding-top: 15px;*/
+	padding-bottom: 10px;
+
+	font-weight: 500;
+	font-size: 34px;
+	color: #212121;
+	line-height: 40px;
 }
