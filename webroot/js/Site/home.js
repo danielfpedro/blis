@@ -36,7 +36,7 @@ $(function(){
     carregaImagensPlaceholders($('.card-image-async'), 0, totalImages, function() {
         $('.grid').masonry('layout');
         carregaImagens($('.card-image-async'), 0, totalImages, function() {
-            console.log('Carregou a porra toda.');
+            $('.grid').masonry('layout');
         });
     });
     function carregaImagensPlaceholders(objects, current, total, callback) {
@@ -80,7 +80,7 @@ $(function(){
             $obj.hide();
             $obj
                 .attr("src", $this.attr("src"))
-                .fadeIn(3000);
+                .fadeIn(500);
 
             $wrap
                 .css({
