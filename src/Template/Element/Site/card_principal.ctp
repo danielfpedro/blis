@@ -7,11 +7,13 @@
 					class="card-image"
 					style="background-image: url(<?= $this->Url->build($post->imagePath) ?>)">
 				</div> -->
-				<img
-					style="width: 100%; height: 100%;"
-					class="card-image-async"
-					src="<?= $this->Url->build($post->main_post_image_lr) ?>"
-					data-original-src="<?= $this->Url->build($post->main_post_image) ?>">
+				<div style="background-color: red; height: auto; min-height: 200px;">
+					<img
+						style="width: 100%; height: 100%;"
+						class="card-image-async"
+						src="<?= $this->Url->build($post->main_post_image_lr) ?>"
+						data-original-src="<?= $this->Url->build($post->main_post_image) ?>">
+				</div>
 			</a>
 			<div class="article-body">
 				<?php if ($showCategoryName): ?>

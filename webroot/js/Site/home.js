@@ -13,55 +13,7 @@ $(function(){
         percentPosition: true
     });
 
-    // window.setInterval(function(){
 
-    //     if (!loading && !allLoaded && getDistance($loader, 700) <= 0) {
-    //         console.log('Carregando mais.');
-    //         loading = true;
-
-    //         var page = parseInt($loader.data('page'));
-    //         var notIn = ($loader.data('not-in')) ? parseInt($loader.data('not-in')) : null;
-
-    //         $.get($loader.data('base-url'), {page: page, not_in: notIn}, function(data){
-    //             if (data.trim()) {
-                    
-    //                 $loader.data('page', parseInt(page + 1));
-
-    //                 var tey = $(data);
-    //                 $('.grid').append(tey).masonry('appended', tey );
-    //                 $('.grid').masonry('reloadItems');
-    //             } else {
-    //                 console.log('Carregou tudo');
-    //                 allLoaded = true;
-    //             }
-
-    //             loading = false;
-    //         })
-    //     }
-
-    //     if (!loading && !smallAllLoaded && getDistance($loaderMoreSmall, 0) <= 0) {
-            
-    //         console.log('Carregando mais Small.');
-    //         loading = true;
-
-    //         var page = parseInt($loaderMoreSmall.data('page'));
-    //         var notIn = ($loaderMoreSmall.data('not-in')) ? parseInt($loaderMoreSmall.data('not-in')) : null;
-
-    //         $.get($loaderMoreSmall.data('base-url'), {page: page, not_in: notIn}, function(data){
-                
-    //             if (data.trim()) {
-    //                 $loaderMoreSmall.data('page', parseInt(page + 1));
-    //                 $('#load-more-small-container').append(data);    
-    //             } else {
-    //                 console.log('Carregou tudo.');
-    //                 smallAllLoaded = true;
-    //             }
-                
-
-    //             loading = false;
-    //         })
-    //     }
-    // }, 1000);
 
     var totalImages = $('.card-image-async').length;
 
@@ -74,17 +26,18 @@ $(function(){
         console.log('Carregando imagem.');
 
         $downloadingImage.on('load', function(){
-            $image.attr("src", $(this).attr("src"));  
+            var $this = $(this);
+            window.setTimeout(function(){
+                $image.attr("src", $this.attr("src"));  
+            }, 2000);
             
-            $('.grid').masonry('reloadItems');
-
             i++;
         });
     });
     var intervalLoadAllImages = window.setInterval(function(){
         if (i >= totalImages) {
-            alert('Terminou de ler tudo.');
             window.clearInterval(intervalLoadAllImages);
+            loadMoreInit();
         }
     }, 500);
 
@@ -98,4 +51,57 @@ $(function(){
         // console.log('distanceFromBottom', distanceFromBottom);
         // console.log('Factor', factor);
     }
+
+    function loadMoreInit(){
+        window.setInterval(function(){
+
+            if (!loading && !allLoaded && getDistance($loader, 700) <= 0) {
+                console.log('Carregando mais.');
+                loading = true;
+
+                var page = parseInt($loader.data('page'));
+                var notIn = ($loader.data('not-in')) ? parseInt($loader.data('not-in')) : null;
+
+                $.get($loader.data('base-url'), {page: page, not_in: notIn}, function(data){
+                    if (data.trim()) {
+                        
+                        $loader.data('page', parseInt(page + 1));
+
+                        var tey = $(data);
+                        $('.grid').append(tey).masonry('appended', tey );
+                        $('.grid').masonry('reloadItems');
+                    } else {
+                        console.log('Carregou tudo');
+                        allLoaded = true;
+                    }
+
+                    loading = false;
+                })
+            }
+
+            if (!loading && !smallAllLoaded && getDistance($loaderMoreSmall, 0) <= 0) {
+                
+                console.log('Carregando mais Small.');
+                loading = true;
+
+                var page = parseInt($loaderMoreSmall.data('page'));
+                var notIn = ($loaderMoreSmall.data('not-in')) ? parseInt($loaderMoreSmall.data('not-in')) : null;
+
+                $.get($loaderMoreSmall.data('base-url'), {page: page, not_in: notIn}, function(data){
+                    
+                    if (data.trim()) {
+                        $loaderMoreSmall.data('page', parseInt(page + 1));
+                        $('#load-more-small-container').append(data);    
+                    } else {
+                        console.log('Carregou tudo.');
+                        smallAllLoaded = true;
+                    }
+                    
+
+                    loading = false;
+                })
+            }
+        }, 1000);
+    }
+
 });
