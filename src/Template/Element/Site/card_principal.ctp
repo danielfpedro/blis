@@ -5,8 +5,7 @@
 			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
 				<div
 					class="card-image"
-					data-image="width: 60px;"
-					style="">
+					style="background-image: url(<?= $this->Url->build($post->imagePath) ?>)">
 				</div>
 			</a>
 			<div class="article-body">
