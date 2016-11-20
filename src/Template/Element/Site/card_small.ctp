@@ -8,8 +8,7 @@
 					<img
 						style="width: 60px; height: 60px;"
 						class="media-object card-image-async"
-						data-base-url="<?= $this->Url->build() ?>"
-						class="media-object card-small-image"
+						data-base-url="<?= $this->request->webroot ?>"
 						src="<?= $this->Url->build('/img/1px.png') ?>"
 						data-original-src="<?= $this->Url->build($post->small_post_image) ?>">
 				</div>

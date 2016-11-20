@@ -13,8 +13,8 @@
 					<img
 						style="width: 100%; height: auto;"
 						class="card-image-async"
+						data-base-url="<?= $this->request->webroot ?>"
 						src="<?= $this->Url->build('/img/main_post_placeholder.png') ?>"
-						data-base-url="<?= $this->Url->build() ?>"
 						data-original-src="<?= $this->Url->build($post->main_post_image) ?>">
 				</div>
 			</a>
