@@ -7,8 +7,9 @@
 					style="background-color: red; height: auto; min-height: 60px;">
 					<img
 						style="width: 60px; height: 60px;"
-						class="card-image-async"
-						src="<?= $this->Url->build($post->small_post_image_lr) ?>" class="media-object card-small-image"
+						class=""
+						data-base-url="<?= $this->Url->build() ?>"
+						class="media-object card-small-image"
 						data-original-src="<?= $this->Url->build($post->small_post_image) ?>" class="media-object card-small-image">
 				</div>
 			</a>

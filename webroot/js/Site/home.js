@@ -17,42 +17,116 @@ $(function(){
         percentPosition: true
     });
 
-    var i = 1;
-    $('.card-image-async').each(function(){
-        var $image = $(this);
-        var $downloadingImage = $("<img/>").attr('src', $image.data('original-src'));
-        console.log($downloadingImage);
+    // var counterCarregaPlaceholder = 1;
+    // $('.card-image-async').each(function(){
 
-        console.log('Carregando imagem.');
+
+    //         counterCarregaPlaceholder++;
+    //     });
+    // });
+
+    // var intervalLoadAllPlaceholderImages = window.setInterval(function(){
+    //     if (counterCarregaPlaceholder >= totalImages) {
+    //         $('.grid').masonry('layout');
+    //         window.clearInterval(intervalLoadAllPlaceholderImages);
+    //         console.log('Carregou tudo.');
+    //     }
+    // }, 500);
+
+    carregaImagensPlaceholders($('.card-image-async'), 0, totalImages, function() {
+        $('.grid').masonry('layout');
+        carregaImagens($('.card-image-async'), 0, totalImages, function() {
+            console.log('Carregou a porra toda.');
+        });
+    });
+    function carregaImagensPlaceholders(objects, current, total, callback) {
+        console.log(total);
+        var $obj = $(objects[current]);
+
+        var baseUrl = $obj.data('base-url');
+        // console.log('baseUrl', baseUrl);
+
+        var $downloadingImage = $("<img/>").attr('src', baseUrl + 'img/main_post_placeholder.png');
 
         $downloadingImage.on('load', function(){
             var $this = $(this);
 
-            var $wrap = $image.parent('.card-image-async-wrap');
+            var $wrap = $obj.parent('.card-image-async-wrap');
+
+            $obj
+                .attr("src", $this.attr("src"))
+                .css('height', 'auto');
+            $wrap
+                .css({
+                    'height': $obj.height() + 'px',
+                });
+            if (current < (total - 1)) {
+                carregaImagensPlaceholders(objects, (current + 1), total, callback);        
+            } else {
+                callback.call();
+            }
+        });
+    }
+    function carregaImagens(objects, current, total, callback) {
+        var $obj = $(objects[current]);
+        
+        var $downloadingImage = $("<img/>").attr('src', $obj.data('original-src'));
+        console.log($downloadingImage);
+        $downloadingImage.on('load', function(){
+            var $this = $(this);
+
+            var $wrap = $obj.parent('.card-image-async-wrap');
+
+            $obj.hide();
+            $obj
+                .attr("src", $this.attr("src"))
+                .fadeIn(3000);
 
             $wrap
                 .css({
-                    'height': $image.height(),
-                    'background-image': 'url('+$image.attr("src")+')',
-                    'background-size': 'contain'
+                    'height': 'auto',
                 });
 
-            $image.hide();
-            $image
-                .attr("src", $this.attr("src"))
-                .fadeIn(500);
-
-            $('.grid').masonry('layout');
-            
-            i++;
+            if (current <= total) {
+                window.setTimeout(function(){
+                    carregaImagens(objects, (current + 1), total, callback);
+                }, 0);
+            } else {
+                callback.call()
+            }
         });
-    });
-    var intervalLoadAllImages = window.setInterval(function(){
-        if (i >= totalImages) {
-            loadMoreInit();
-            window.clearInterval(intervalLoadAllImages);
-        }
-    }, 500);
+    }
+
+    // var i = 1;
+    // $('.card-image-async').each(function(){
+    //     var $image = $(this);
+    //     var $downloadingImage = $("<img/>").attr('src', $image.data('original-src'));
+
+    //     $downloadingImage.on('load', function(){
+    //         var $this = $(this);
+
+    //         var $wrap = $image.parent('.card-image-async-wrap');
+
+    //         $image.hide();
+    //         $image
+    //             .attr("src", $this.attr("src"))
+    //             .fadeIn(1000);
+
+    //         $wrap
+    //             .css({
+    //                 'height': 'auto',
+    //             });
+            
+    //         i++;
+    //     });
+    // });
+    // var intervalLoadAllImages = window.setInterval(function(){
+    //     if (i >= totalImages) {
+    //         $('.grid').masonry('layout');
+    //         loadMoreInit();
+    //         window.clearInterval(intervalLoadAllImages);
+    //     }
+    // }, 500);
 
     function getDistance($loader, offset) {
         var scrollTop = $(window).scrollTop();
