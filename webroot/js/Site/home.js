@@ -8,11 +8,6 @@ $(function(){
     var $loaderMoreSmall = $('.load-more-small');
     var smallAllLoaded = false;
 
-    $('.grid').masonry({
-        itemSelector : '.grid-item',
-        percentPosition: true
-    });
-
 
 
     var totalImages = $('.card-image-async').length;
@@ -37,6 +32,10 @@ $(function(){
     var intervalLoadAllImages = window.setInterval(function(){
         if (i >= totalImages) {
             window.clearInterval(intervalLoadAllImages);
+            $('.grid').masonry({
+                itemSelector : '.grid-item',
+                percentPosition: true
+            });
             loadMoreInit();
         }
     }, 500);
