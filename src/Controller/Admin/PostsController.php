@@ -165,4 +165,17 @@ class PostsController extends AppController
         preg_match_all($pattern, $string, $matches);
         return $matches[1];
     }
+
+    public function generateLowRes()
+    {
+      $this->viewBuilder()->layout('ajax');
+
+      $posts = $this->Posts->find('all');
+
+      foreach ($posts as $key => $post) {
+        $this->Posts->generateLR($post);
+      }
+
+      $this->autoRender = false;
+    }
 }

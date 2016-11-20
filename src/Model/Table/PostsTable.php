@@ -32,6 +32,24 @@ use WideImage\WideImage;
 class PostsTable extends Table
 {
 
+    public $images = [
+        'main_post' => [
+            'w' => 400,
+            'h' => 250,
+            'hasLR' => true
+        ],
+        'small_post' => [
+            'w' => 120,
+            'h' => 120,
+            'hasLR' => true
+        ],
+        'view_post' => [
+            'w' => 600,
+            'h' => 270,
+            'hasLR' => false
+        ],
+    ];
+
     /**
      * Initialize method
      *
@@ -56,6 +74,41 @@ class PostsTable extends Table
             'foreignKey' => 'category_id',
             'joinType' => 'INNER'
         ]);
+    }
+
+    public function generateLR($post)
+    {
+        $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
+        $image = WideImage::load($post->img);
+
+        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $post->img) . '.jpg';
+
+        $imageQuality = '100';
+        $imageLRQuality = '0';
+
+        /**
+         * Original
+         */
+        $image
+            ->saveToFile($dir->path . DS . $imageName, $imageQuality);
+
+        foreach ($this->images as $key => $value) {
+            $image
+                ->resize($value['w'], $value['h'], 'outside')
+                ->crop('center', 'top', $value['w'], $value['h'])
+                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
+            if ($value['hasLR']) {
+                $image
+                    ->resize($value['w'], $value['h'], 'outside')
+                    ->crop('center', 'top', $value['w'], $value['h'])
+                    ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
+            }
+        }
+
+
+        $post->photo = $imageName;
+        $this->save($post);
+
     }
 
     public function recents($page = 1, $total, $notIn = [], $category = [])
@@ -148,20 +201,31 @@ class PostsTable extends Table
     {
         $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
         $image = WideImage::load($entity->img);
-        $imageSquared = WideImage::load($entity->img);
 
         $ext = pathinfo($entity->img, PATHINFO_EXTENSION);
-        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $entity->img) . '.' . $ext;
+        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $entity->img) . '.jpg';
 
+        $imageQuality = '100';
+        $imageLRQuality = '0';
+
+        /**
+         * Original
+         */
         $image
-            ->resize(600, 300, 'outside')
-            ->crop('center', 'top', 600, 300)
-            ->saveToFile($dir->path . DS . $imageName);
+            ->saveToFile($dir->path . DS . $imageName, $imageQuality);
 
-        $imageSquared
-            ->resize(200, 200, 'outside')
-            ->crop('center', 'top', 200, 200)
-            ->saveToFile($dir->path . DS . 'square_' . $imageName);
+        foreach ($this->images as $key => $value) {
+            $image
+                ->resize($value['w'], $value['h'], 'outside')
+                ->crop('center', 'top', $value['w'], $value['h'])
+                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
+            if ($value['hasLR']) {
+                $image
+                    ->resize($value['w'], $value['h'], 'outside')
+                    ->crop('center', 'top', $value['w'], $value['h'])
+                    ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
+            }
+        }
 
         $entity->photo = $imageName;
     }

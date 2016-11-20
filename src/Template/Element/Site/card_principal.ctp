@@ -3,10 +3,15 @@
 		<div class="grid-item-wrap article-wrap">
 			<!-- <a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank"> -->
 			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
+				<!-- <div
+					class="card-image"
+					style="background-image: url(<?= $this->Url->build($post->imagePath) ?>)">
+				</div> -->
 				<img
-					style="width: 100%; height: auto;"
-					class="lazy"
-					data-original="<?= $this->Url->build($post->imagePath) ?>" style="width: 100%; height: 100%;">
+					style="width: 100%; height: 100%;"
+					class="card-image-async"
+					src="<?= $this->Url->build($post->main_post_image_lr) ?>"
+					data-original-src="<?= $this->Url->build($post->main_post_image) ?>">
 			</a>
 			<div class="article-body">
 				<?php if ($showCategoryName): ?>

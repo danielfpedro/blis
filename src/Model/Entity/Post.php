@@ -59,12 +59,33 @@ class Post extends Entity
             'slug' => $this->_properties['slug'],
         ];
     }
-    protected function _getImagePath()
+    /**
+     * Main post
+     */
+    protected function _getMainPostImage()
     {
-        return '/files/images/' . $this->_properties['photo'];
+        return $this->_getImageFromPrefix('main_post');
     }
-    protected function _getSquaredImagePath()
+    protected function _getMainPostImageLr()
     {
-        return '/files/images/square_' . $this->_properties['photo'];
+        return $this->_getImageFromPrefix('main_post', true);
+    }
+    /**
+     * Small Squared
+     */
+    protected function _getSmallPostImage()
+    {
+        return $this->_getImageFromPrefix('small_post');
+    }
+    protected function _getSmallPostImageLr()
+    {
+        return $this->_getImageFromPrefix('small_post', true);
+    }
+
+    protected function _getImageFromPrefix($prefix, $lr = false) {
+        if ($lr) {
+            $prefix .= '_lr';
+        }
+        return '/files/images/' . $prefix . '_' . $this->_properties['photo'];
     }
 }

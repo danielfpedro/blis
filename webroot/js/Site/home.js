@@ -1,6 +1,17 @@
 $(function(){
 
-    $("img.lazy").lazyload();
+    $('.card-image-async').each(function(){
+        var $image = $(this);
+        var $downloadingImage = $("<img/>").attr('src', $image.data('original-src'));
+        console.log($downloadingImage);
+
+        console.log('Carregando imagem.');
+
+        $downloadingImage.on('load', function(){
+            $image.attr("src", $(this).attr("src"));  
+            console.log('Carregado primeiro.');
+        });
+    });
 
     var documentHeight = $(window).height();
     var loading = false;
