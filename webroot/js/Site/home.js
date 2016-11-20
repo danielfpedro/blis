@@ -12,6 +12,11 @@ $(function(){
 
     var totalImages = $('.card-image-async').length;
 
+    $('.grid').masonry({
+        itemSelector : '.grid-item',
+        percentPosition: true
+    });
+
     var i = 1;
     $('.card-image-async').each(function(){
         var $image = $(this);
