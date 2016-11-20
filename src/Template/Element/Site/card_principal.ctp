@@ -9,11 +9,11 @@
 				</div> -->
 				<div
 					class="card-image-async-wrap"
-					style="background-color: red; height: auto; min-height: 50px;">
+					style="background-color: red; height: auto;">
 					<img
-						style="width: 100%; height: 50px;"
+						style="width: 100%; height: auto;"
 						class="card-image-async"
-						src="<?= $this->Url->build('/img/1px.png') ?>"
+						src="<?= $this->Url->build('/img/main_post_placeholder.png') ?>"
 						data-base-url="<?= $this->Url->build() ?>"
 						data-original-src="<?= $this->Url->build($post->main_post_image) ?>">
 				</div>
