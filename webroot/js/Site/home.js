@@ -1,18 +1,5 @@
 $(function(){
 
-    $('.card-image-async').each(function(){
-        var $image = $(this);
-        var $downloadingImage = $("<img/>").attr('src', $image.data('original-src'));
-        console.log($downloadingImage);
-
-        console.log('Carregando imagem.');
-
-        $downloadingImage.on('load', function(){
-            $image.attr("src", $(this).attr("src"));  
-            console.log('Carregado primeiro.');
-        });
-    });
-
     var documentHeight = $(window).height();
     var loading = false;
     var $loader = $('.load-more');
@@ -26,55 +13,80 @@ $(function(){
         percentPosition: true
     });
 
-    window.setInterval(function(){
+    // window.setInterval(function(){
 
-        if (!loading && !allLoaded && getDistance($loader, 700) <= 0) {
-            console.log('Carregando mais.');
-            loading = true;
+    //     if (!loading && !allLoaded && getDistance($loader, 700) <= 0) {
+    //         console.log('Carregando mais.');
+    //         loading = true;
 
-            var page = parseInt($loader.data('page'));
-            var notIn = ($loader.data('not-in')) ? parseInt($loader.data('not-in')) : null;
+    //         var page = parseInt($loader.data('page'));
+    //         var notIn = ($loader.data('not-in')) ? parseInt($loader.data('not-in')) : null;
 
-            $.get($loader.data('base-url'), {page: page, not_in: notIn}, function(data){
-                if (data.trim()) {
+    //         $.get($loader.data('base-url'), {page: page, not_in: notIn}, function(data){
+    //             if (data.trim()) {
                     
-                    $loader.data('page', parseInt(page + 1));
+    //                 $loader.data('page', parseInt(page + 1));
 
-                    var tey = $(data);
-                    $('.grid').append(tey).masonry('appended', tey );
-                    $('.grid').masonry('reloadItems');
-                } else {
-                    console.log('Carregou tudo');
-                    allLoaded = true;
-                }
+    //                 var tey = $(data);
+    //                 $('.grid').append(tey).masonry('appended', tey );
+    //                 $('.grid').masonry('reloadItems');
+    //             } else {
+    //                 console.log('Carregou tudo');
+    //                 allLoaded = true;
+    //             }
 
-                loading = false;
-            })
-        }
+    //             loading = false;
+    //         })
+    //     }
 
-        if (!loading && !smallAllLoaded && getDistance($loaderMoreSmall, 0) <= 0) {
+    //     if (!loading && !smallAllLoaded && getDistance($loaderMoreSmall, 0) <= 0) {
             
-            console.log('Carregando mais Small.');
-            loading = true;
+    //         console.log('Carregando mais Small.');
+    //         loading = true;
 
-            var page = parseInt($loaderMoreSmall.data('page'));
-            var notIn = ($loaderMoreSmall.data('not-in')) ? parseInt($loaderMoreSmall.data('not-in')) : null;
+    //         var page = parseInt($loaderMoreSmall.data('page'));
+    //         var notIn = ($loaderMoreSmall.data('not-in')) ? parseInt($loaderMoreSmall.data('not-in')) : null;
 
-            $.get($loaderMoreSmall.data('base-url'), {page: page, not_in: notIn}, function(data){
+    //         $.get($loaderMoreSmall.data('base-url'), {page: page, not_in: notIn}, function(data){
                 
-                if (data.trim()) {
-                    $loaderMoreSmall.data('page', parseInt(page + 1));
-                    $('#load-more-small-container').append(data);    
-                } else {
-                    console.log('Carregou tudo.');
-                    smallAllLoaded = true;
-                }
+    //             if (data.trim()) {
+    //                 $loaderMoreSmall.data('page', parseInt(page + 1));
+    //                 $('#load-more-small-container').append(data);    
+    //             } else {
+    //                 console.log('Carregou tudo.');
+    //                 smallAllLoaded = true;
+    //             }
                 
 
-                loading = false;
-            })
+    //             loading = false;
+    //         })
+    //     }
+    // }, 1000);
+
+    var totalImages = $('.card-image-async').length;
+
+    var i = 1;
+    $('.card-image-async').each(function(){
+        var $image = $(this);
+        var $downloadingImage = $("<img/>").attr('src', $image.data('original-src'));
+        console.log($downloadingImage);
+
+        console.log('Carregando imagem.');
+
+        $downloadingImage.on('load', function(){
+            $image.attr("src", $(this).attr("src"));  
+            
+            $('.grid').masonry('reloadItems');
+
+            i++;
+        });
+    });
+    var intervalLoadAllImages = window.setInterval(function(){
+        if (i >= totalImages) {
+            alert('Terminou de ler tudo.');
+            window.clearInterval(intervalLoadAllImages);
         }
-    }, 1000);
+    }, 500);
 
     function getDistance($loader, offset) {
         var scrollTop = $(window).scrollTop();
