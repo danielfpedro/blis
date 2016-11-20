@@ -4,13 +4,14 @@
 			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
 				<div
 					class="card-image-async-wrap"
-					style="background-color: red; height: auto; min-height: 60px;">
+					style="background-color: red; height: 60px; min-height: 60px;">
 					<img
 						style="width: 60px; height: 60px;"
-						class=""
+						class="media-object card-image-async"
 						data-base-url="<?= $this->Url->build() ?>"
 						class="media-object card-small-image"
-						data-original-src="<?= $this->Url->build($post->small_post_image) ?>" class="media-object card-small-image">
+						src="<?= $this->Url->build('/img/1px.png') ?>"
+						data-original-src="<?= $this->Url->build($post->small_post_image) ?>">
 				</div>
 			</a>
 		</div>
