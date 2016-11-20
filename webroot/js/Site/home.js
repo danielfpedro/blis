@@ -40,16 +40,15 @@ $(function(){
             $image.hide();
             $image
                 .attr("src", $this.attr("src"))
-                .fadeIn(1000);
+                .fadeIn(500);
 
-            
+            $('.grid').masonry('layout');
             
             i++;
         });
     });
     var intervalLoadAllImages = window.setInterval(function(){
         if (i >= totalImages) {
-            $('.grid').masonry('layout');
             loadMoreInit();
             window.clearInterval(intervalLoadAllImages);
         }

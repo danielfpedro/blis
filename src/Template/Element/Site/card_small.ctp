@@ -2,11 +2,15 @@
 	<div class="media">
 		<div class="media-left">
 			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
-				<img
-					style="width: 60px; height: 60px;"
-					class="card-image-async"
-					src="<?= $this->Url->build($post->small_post_image_lr) ?>" class="media-object card-small-image"
-					data-original-src="<?= $this->Url->build($post->small_post_image) ?>" class="media-object card-small-image">
+				<div
+					class="card-image-async-wrap"
+					style="background-color: red; height: auto; min-height: 60px;">
+					<img
+						style="width: 60px; height: 60px;"
+						class="card-image-async"
+						src="<?= $this->Url->build($post->small_post_image_lr) ?>" class="media-object card-small-image"
+						data-original-src="<?= $this->Url->build($post->small_post_image) ?>" class="media-object card-small-image">
+				</div>
 			</a>
 		</div>
 		<div class="media-body">
