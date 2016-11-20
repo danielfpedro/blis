@@ -32,6 +32,8 @@
     <?= $this->Html->script('../lib/jquery/dist/jquery.min') ?>
     <?= $this->Html->script('../lib/bootstrap/dist/js/bootstrap.min') ?>
 
+    <?= $this->Html->script('../lib/jquery_lazyload/jquery.lazyload') ?>
+
     <?= $this->Html->script('../lib/masonry/dist/masonry.pkgd.min') ?>
 
     <?= $this->fetch('script') ?>

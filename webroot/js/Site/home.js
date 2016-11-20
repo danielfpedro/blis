@@ -1,4 +1,7 @@
 $(function(){
+
+    $("img.lazy").lazyload();
+
     var documentHeight = $(window).height();
     var loading = false;
     var $loader = $('.load-more');
