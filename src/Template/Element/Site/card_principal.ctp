@@ -9,7 +9,7 @@
 				</div> -->
 				<div
 					class="card-image-async-wrap"
-					style="background-color: red; height: auto;">
+					style="background-color: red; height: auto; min-height: 100px;">
 					<img
 						style="width: 100%; height: auto;"
 						class="card-image-async"
