@@ -27,19 +27,31 @@ $(function(){
 
         $downloadingImage.on('load', function(){
             var $this = $(this);
-            window.setTimeout(function(){
-                $image.attr("src", $this.attr("src"));  
-            }, 2000);
 
-            $('.grid').masonry('layout');
+            var $wrap = $image.parent('.card-image-async-wrap');
+
+            $wrap
+                .css({
+                    'height': $image.height(),
+                    'background-image': 'url('+$image.attr("src")+')',
+                    'background-size': 'contain'
+                });
+
+            $image.hide();
+            $image
+                .attr("src", $this.attr("src"))
+                .fadeIn(1000);
+
+            
             
             i++;
         });
     });
     var intervalLoadAllImages = window.setInterval(function(){
         if (i >= totalImages) {
-            window.clearInterval(intervalLoadAllImages);
+            $('.grid').masonry('layout');
             loadMoreInit();
+            window.clearInterval(intervalLoadAllImages);
         }
     }, 500);
 
