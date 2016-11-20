@@ -30,6 +30,8 @@ $(function(){
             window.setTimeout(function(){
                 $image.attr("src", $this.attr("src"));  
             }, 2000);
+
+            $('.grid').masonry('layout');
             
             i++;
         });
@@ -37,10 +39,6 @@ $(function(){
     var intervalLoadAllImages = window.setInterval(function(){
         if (i >= totalImages) {
             window.clearInterval(intervalLoadAllImages);
-            $('.grid').masonry({
-                itemSelector : '.grid-item',
-                percentPosition: true
-            });
             loadMoreInit();
         }
     }, 500);
