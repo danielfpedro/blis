@@ -3,11 +3,9 @@
 		<div class="media-left">
 			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
 				<div
-					class="card-image-async-wrap"
-					style="background-color: red; height: 60px; min-height: 60px;">
+					class="card-image-small-async-wrap">
 					<img
-						style="width: 60px; height: 60px;"
-						class="media-object card-image-async"
+						class="media-object card-image-async card-image-small"
 						data-base-url="<?= $this->request->webroot ?>"
 						src="<?= $this->Url->build('/img/1px.png') ?>"
 						data-original-src="<?= $this->Url->build($post->small_post_image) ?>">

@@ -1,15 +1,9 @@
 <?php foreach ($posts as $key => $post): ?>
 	<div class="grid-item">
 		<div class="grid-item-wrap article-wrap">
-			<!-- <a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank"> -->
 			<a href="<?= $this->Url->build($post->viewUrl) ?>" target="_blank">
-				<!-- <div
-					class="card-image"
-					style="background-image: url(<?= $this->Url->build($post->imagePath) ?>)">
-				</div> -->
 				<div
-					class="card-image-async-wrap"
-					style="background-color: red; height: auto; min-height: 100px;">
+					class="card-image-async-wrap">
 					<img
 						style="width: 100%; height: auto;"
 						class="card-image-async"

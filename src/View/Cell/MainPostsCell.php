@@ -26,7 +26,12 @@ class MainPostsCell extends Cell
     {
         $this->loadModel('Posts');
 
-        $posts = $this->Posts->populars(1, 1, $notIn, (int)$categoryId);
+        $posts = $this->Posts->populars(
+            1,
+            $this->Posts->perPage['main'],
+            $notIn,
+            (int)$categoryId
+        );
 
         $showCategoryName = !((int)$categoryId);
 

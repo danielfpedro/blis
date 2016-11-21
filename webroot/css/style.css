@@ -226,3 +226,15 @@ a.main-post-title:hover {
 	color: #212121;
 	line-height: 40px;
 }
+
+.card-image-async-wrap, .card-image-small-async-wrap {
+	background-color: #E0E0E0;
+}
+.card-image-async-wrap {
+	min-height: 150px;
+	margin-bottom: 10px;
+}
+.card-image-small-async-wrap, .card-image-small {
+	width: 60px;
+	height: 60px;
+}

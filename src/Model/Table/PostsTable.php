@@ -49,6 +49,10 @@ class PostsTable extends Table
             'hasLR' => false
         ],
     ];
+    public $perPage = [
+        'main' => 15,
+        'small' => 15,
+    ];
 
     /**
      * Initialize method
@@ -111,15 +115,15 @@ class PostsTable extends Table
 
     }
 
-    public function recents($page = 1, $total, $notIn = [], $category = [])
+    public function recents($page = 1, $total, $notIn = [], $categoryId = null)
     {
         $conditions = [];
 
         if ($notIn) {
             $conditions['Posts.id NOT IN'] = $notIn;
         }
-        if ($category) {
-            $conditions['Posts.category_id'] = $category->id;
+        if ((int)$categoryId) {
+            $conditions['Posts.category_id'] = $categoryId;
         }
 
         return $this

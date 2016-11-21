@@ -34,11 +34,12 @@
 				Últimas
 			</div>
 			<div id="load-more-small-container">
-				<?= $this->cell('RecentPosts', ['notIn' => [], 'category' => $category]) ?>
+				<?= $this->cell('RecentPosts', ['notIn' => [], 'category' => (int)$category->id]) ?>
 			</div>
 
 			<div
 				class="load-more-small"
+				data-category="<?= (int)$category->id ?>"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMoreSmall']) ?>"
 				data-page="2">
 			</div>	

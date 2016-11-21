@@ -139,12 +139,16 @@ $(function(){
 
                 var page = parseInt($loaderMoreSmall.data('page'));
                 var notIn = ($loaderMoreSmall.data('not-in')) ? parseInt($loaderMoreSmall.data('not-in')) : null;
+                var category = $loader.data('category');
 
-                $.get($loaderMoreSmall.data('base-url'), {page: page, not_in: notIn}, function(data){
+                $.get($loaderMoreSmall.data('base-url'), {page: page, not_in: notIn, category: category}, function(data){
                     
                     if (data.trim()) {
                         $loaderMoreSmall.data('page', parseInt(page + 1));
-                        $('#load-more-small-container').append(data);    
+                        $('#load-more-small-container').append(data);
+
+                        carregaImagens($('.card-image-async:not(.img-loaded)'), 0, function() {
+                        });    
                     } else {
                         console.log('Carregou tudo.');
                         smallAllLoaded = true;

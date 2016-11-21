@@ -29,7 +29,12 @@ class SiteController extends AppController
 			$notIn = explode(',', $this->request->query('not_in'));
 		};
 
-		$posts = $this->Posts->populars((int)$this->request->query('page'), 1, $notIn, (int)$this->request->query('category'));
+		$posts = $this->Posts->populars(
+			(int)$this->request->query('page'),
+			$this->Posts->perPage['main'],
+			$notIn,
+			(int)$this->request->query('category')
+		);
 
 		$this->set([
 			'posts' => $posts,
@@ -88,7 +93,12 @@ class SiteController extends AppController
 			$notIn = explode(',', $this->request->query('not_in'));
 		};
 		
-		$posts = $this->Posts->recents((int)$this->request->query('page'), 15, $notIn);
+		$posts = $this->Posts->recents(
+			(int)$this->request->query('page'),
+			$this->Posts->perPage['small'],
+			$notIn,
+			(int)$this->request->query('category')
+		);
 
 		$this->set(['posts' => $posts]);
 	}
