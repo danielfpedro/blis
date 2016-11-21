@@ -20,10 +20,11 @@
 			<div class="section-title">
 				Populares
 			</div>
-			<?= $this->cell('MainPosts', ['notIn' => [], 'category' => $category]) ?>
+			<?= $this->cell('MainPosts', ['notIn' => [], 'category' => (int)$category->id]) ?>
 
 			<div
 				class="load-more"
+				data-category="<?= (int)$category->id ?>"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMore']) ?>"
 				data-page="2">
 			</div>

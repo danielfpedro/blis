@@ -8,8 +8,6 @@ $(function(){
     var $loaderMoreSmall = $('.load-more-small');
     var smallAllLoaded = false;
 
-
-
     var totalImages = $('.card-image-async').length;
 
     $('.grid').masonry({
@@ -17,30 +15,16 @@ $(function(){
         percentPosition: true
     });
 
-    // var counterCarregaPlaceholder = 1;
-    // $('.card-image-async').each(function(){
-
-
-    //         counterCarregaPlaceholder++;
-    //     });
-    // });
-
-    // var intervalLoadAllPlaceholderImages = window.setInterval(function(){
-    //     if (counterCarregaPlaceholder >= totalImages) {
-    //         $('.grid').masonry('layout');
-    //         window.clearInterval(intervalLoadAllPlaceholderImages);
-    //         console.log('Carregou tudo.');
-    //     }
-    // }, 500);
-
-    carregaImagensPlaceholders($('.card-image-async'), 0, totalImages, function() {
+    loadMoreInit();
+    carregaImagensPlaceholders($('.card-image-async:not(.img-loaded)'), 0, function() {
         $('.grid').masonry('layout');
-        carregaImagens($('.card-image-async'), 0, totalImages, function() {
-            $('.grid').masonry('layout');
+        carregaImagens($('.card-image-async:not(.img-loaded)'), 0, function() {
+            // $('.grid').masonry('layout');
+            console.log('Chamando load more');
         });
     });
-    function carregaImagensPlaceholders(objects, current, total, callback) {
-        console.log(total);
+    function carregaImagensPlaceholders(objects, current, callback) {
+        var total = objects.length;
         var $obj = $(objects[current]);
 
         var baseUrl = $obj.data('base-url');
@@ -60,14 +44,19 @@ $(function(){
                 .css({
                     'height': $obj.height() + 'px',
                 });
+            // console.log('Obj', $obj);
+            // console.log('Current', current);
+            // console.log('Callback', callback);
+
             if (current < (total - 1)) {
-                carregaImagensPlaceholders(objects, (current + 1), total, callback);        
+                carregaImagensPlaceholders(objects, (current + 1), callback);        
             } else {
                 callback.call();
             }
         });
     }
-    function carregaImagens(objects, current, total, callback) {
+    function carregaImagens(objects, current, callback) {
+        var total = objects.length;
         var $obj = $(objects[current]);
         
         var $downloadingImage = $("<img/>").attr('src', $obj.data('original-src'));
@@ -80,53 +69,24 @@ $(function(){
             $obj.hide();
             $obj
                 .attr("src", $this.attr("src"))
-                .fadeIn(500);
+                .fadeIn(500, function() {
+                    $(this).addClass('img-loaded')
+                });
 
             $wrap
                 .css({
                     'height': 'auto',
                 });
 
-            if (current <= total) {
+            if (current < (total - 1)) {
                 window.setTimeout(function(){
-                    carregaImagens(objects, (current + 1), total, callback);
+                    carregaImagens(objects, (current + 1), callback);
                 }, 0);
             } else {
                 callback.call()
             }
         });
     }
-
-    // var i = 1;
-    // $('.card-image-async').each(function(){
-    //     var $image = $(this);
-    //     var $downloadingImage = $("<img/>").attr('src', $image.data('original-src'));
-
-    //     $downloadingImage.on('load', function(){
-    //         var $this = $(this);
-
-    //         var $wrap = $image.parent('.card-image-async-wrap');
-
-    //         $image.hide();
-    //         $image
-    //             .attr("src", $this.attr("src"))
-    //             .fadeIn(1000);
-
-    //         $wrap
-    //             .css({
-    //                 'height': 'auto',
-    //             });
-            
-    //         i++;
-    //     });
-    // });
-    // var intervalLoadAllImages = window.setInterval(function(){
-    //     if (i >= totalImages) {
-    //         $('.grid').masonry('layout');
-    //         loadMoreInit();
-    //         window.clearInterval(intervalLoadAllImages);
-    //     }
-    // }, 500);
 
     function getDistance($loader, offset) {
         var scrollTop = $(window).scrollTop();
@@ -141,24 +101,30 @@ $(function(){
 
     function loadMoreInit(){
         window.setInterval(function(){
-
+            /**
+             * Carrega principal
+             */
             if (!loading && !allLoaded && getDistance($loader, 700) <= 0) {
                 console.log('Carregando mais.');
                 loading = true;
 
                 var page = parseInt($loader.data('page'));
                 var notIn = ($loader.data('not-in')) ? parseInt($loader.data('not-in')) : null;
+                var category = $loader.data('category');
 
-                $.get($loader.data('base-url'), {page: page, not_in: notIn}, function(data){
+                $.get($loader.data('base-url'), {page: page, not_in: notIn, category: category}, function(data){
                     if (data.trim()) {
                         
                         $loader.data('page', parseInt(page + 1));
 
                         var tey = $(data);
                         $('.grid').append(tey).masonry('appended', tey );
-                        $('.grid').masonry('reloadItems');
+                        $('.grid').masonry('layout');
+                        carregaImagens($('.card-image-async:not(.img-loaded)'), 0, function() {
+                            // $('.grid').masonry('layout');
+                            console.log('Chamando load more');
+                        });
                     } else {
-                        console.log('Carregou tudo');
                         allLoaded = true;
                     }
 

@@ -81,7 +81,13 @@ class Post extends Entity
     {
         return $this->_getImageFromPrefix('small_post', true);
     }
-
+    /**
+     * View Post image
+     */
+    protected function _getViewPostImage()
+    {
+        return $this->_getImageFromPrefix('view_post');
+    }
     protected function _getImageFromPrefix($prefix, $lr = false) {
         if ($lr) {
             $prefix .= '_lr';

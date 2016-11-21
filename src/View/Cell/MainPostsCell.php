@@ -22,13 +22,13 @@ class MainPostsCell extends Cell
      *
      * @return void
      */
-    public function display($notIn = [], $category = [])
+    public function display($notIn = [], $categoryId = null)
     {
         $this->loadModel('Posts');
 
-        $posts = $this->Posts->populars(1, 15, $notIn, $category);
+        $posts = $this->Posts->populars(1, 1, $notIn, (int)$categoryId);
 
-        $showCategoryName = !($category);
+        $showCategoryName = !((int)$categoryId);
 
         $this->set(compact('posts', 'showCategoryName'));
     }

@@ -20,6 +20,7 @@
 			<div
 				class="load-more"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMore']) ?>"
+				data-category=""
 				data-page="2">
 			</div>
 		</div>

@@ -12,9 +12,12 @@
 				<a href="<?= $this->Url->build($mainPost->viewUrl) ?>" target="_blank">
 					<div
 						class="card-image"
-						style="height: 250px; background-image: url(<?= $this->Url->build($mainPost->imagePath) ?>)">
+						style="height: 250px; background-image: url(<?= $this->Url->build($mainPost->view_post_image) ?>)">
 					</div>
-					<a href="<?= $this->Url->build($mainPost->viewUrl) ?>" class="main-post-title">
+					<a
+						href="<?= $this->Url->build($mainPost->viewUrl) ?>"
+						class="main-post-title"
+						target="_blank">
 						<h1>
 							<?= $mainPost->title ?>
 						</h1>

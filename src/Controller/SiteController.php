@@ -29,9 +29,12 @@ class SiteController extends AppController
 			$notIn = explode(',', $this->request->query('not_in'));
 		};
 
-		$posts = $this->Posts->populars((int)$this->request->query('page'), 15, $notIn);
+		$posts = $this->Posts->populars((int)$this->request->query('page'), 1, $notIn, (int)$this->request->query('category'));
 
-		$this->set(['posts' => $posts]);
+		$this->set([
+			'posts' => $posts,
+			'showCategoryName' => !($this->request->query('category'))
+		]);
 	}
 	public function category()
 	{

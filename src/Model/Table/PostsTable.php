@@ -159,15 +159,15 @@ class PostsTable extends Table
         return null; 
     }
 
-    public function populars($page = 1, $total, $notIn = [], $category = [])
+    public function populars($page = 1, $total, $notIn = [], $categoryId = null)
     {
         $conditions = [];
 
         if ($notIn) {
             $conditions['Posts.id NOT IN'] = $notIn;
         } 
-        if ($category) {
-            $conditions['Posts.category_id'] = $category->id;
+        if ((int)$categoryId) {
+            $conditions['Posts.category_id'] = $categoryId;
         }
 
         $pastDate = new \Datetime();
