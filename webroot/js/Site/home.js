@@ -67,15 +67,15 @@ $(function(){
             var $wrap = $obj.parent('.card-image-async-wrap');
 
             $obj.hide();
+                     
             $obj
                 .attr("src", $this.attr("src"))
                 .fadeIn(500, function() {
-                    $(this).addClass('img-loaded')
-                });
-
-            $wrap
-                .css({
-                    'height': 'auto',
+                    $(this).addClass('img-loaded');
+                    $wrap
+                        .css({
+                            'height': 'auto',
+                        });
                 });
 
             if (current < (total - 1)) {
