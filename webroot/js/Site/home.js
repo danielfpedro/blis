@@ -24,6 +24,7 @@ $(function(){
         });
     });
     function carregaImagensPlaceholders(objects, current, callback) {
+        console.log('Carregando placeholder');
         var total = objects.length;
         var $obj = $(objects[current]);
 
@@ -47,10 +48,17 @@ $(function(){
             // console.log('Obj', $obj);
             // console.log('Current', current);
             // console.log('Callback', callback);
-
             if (current < (total - 1)) {
-                carregaImagensPlaceholders(objects, (current + 1), callback);        
+                carregaImagensPlaceholders(objects, (current + 1), callback);
             } else {
+                callback.call();
+            }
+        }).on('error', function() {
+            if (current < (total - 1)) {
+                console.log('CARREGAAANDOOO');
+                carregaImagensPlaceholders(objects, (current + 1), callback);
+            } else {
+                console.log('CARREGOU TUDOO');
                 callback.call();
             }
         });
@@ -78,6 +86,15 @@ $(function(){
                         });
                 });
 
+            if (current < (total - 1)) {
+                window.setTimeout(function(){
+                    carregaImagens(objects, (current + 1), callback);
+                }, 0);
+            } else {
+                callback.call()
+            }
+        }).on('error', function() {
+            console.log('Deu erro');
             if (current < (total - 1)) {
                 window.setTimeout(function(){
                     carregaImagens(objects, (current + 1), callback);
