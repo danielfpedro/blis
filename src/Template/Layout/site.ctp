@@ -9,8 +9,6 @@
     <?= $this->Html->meta('icon') ?>
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif:400,500,700" rel="stylesheet">
 
     <?= $this->Html->css('../lib/bootstrap/dist/css/bootstrap.min') ?>
