@@ -57,6 +57,7 @@ class Post extends Entity
             'month' => $this->_properties['pub_date']->format('m'),
             'day' => $this->_properties['pub_date']->format('d'),
             'slug' => $this->_properties['slug'],
+            'prefix' => false
         ];
     }
     /**

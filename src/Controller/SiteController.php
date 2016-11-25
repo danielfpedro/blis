@@ -12,6 +12,8 @@ class SiteController extends AppController
 	public function beforeFilter(Event $event)
 	{
 		parent::beforeFilter($event);
+		$this->Auth->allow();
+
 		$this->viewBuilder()->layout('site');
 
 		$this->loadModel('Posts');

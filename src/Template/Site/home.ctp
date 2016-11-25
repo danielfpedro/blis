@@ -1,4 +1,13 @@
-<?= $this->assign('title', 'Blizz - Descubra os melhores conteúdos sobre a Cultura Pop') ?>
+<?php
+	$this->assign('title', 'Blizz - Descubra os melhores conteúdos sobre a Cultura Pop');
+	echo $this->Html->meta(
+		'description',
+		'Descubra os melhores conteúdos sobre a Cultura Pop. Jogos, Cinema e Televisão (Séries).',
+		['block' => true]
+	);
+?>
+
+
 <?= $this->Html->script('Site/home', ['block' => true]) ?>
 
 <?= $this->cell('Navbar') ?>

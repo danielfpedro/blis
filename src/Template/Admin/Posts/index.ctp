@@ -13,11 +13,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('img') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('source_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tags') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('category_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -26,11 +22,12 @@
         <tbody>
             <?php foreach ($posts as $post): ?>
             <tr>
-                <td><?= $this->Number->format($post->id) ?></td>
-                <td><?= h($post->created) ?></td>
-                <td><?= h($post->modified) ?></td>
-                <td><?= h($post->img) ?></td>
-                <td><?= $post->has('source') ? $this->Html->link($post->source->name, ['controller' => 'Sources', 'action' => 'view', $post->source->id]) : '' ?></td>
+                <td>
+                    <?= $this->Html->link(h($post->title),
+                        $post->view_url, [
+                        'target' => '_blank'
+                    ]) ?>
+                </td>
                 <td><?= h($post->tags) ?></td>
                 <td><?= $post->has('category') ? $this->Html->link($post->category->name, ['controller' => 'Categories', 'action' => 'view', $post->category->id]) : '' ?></td>
                 <td class="actions">
