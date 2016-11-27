@@ -18,18 +18,17 @@ $(function(){
     loadMoreInit();
     carregaImagensPlaceholders($('.card-image-async:not(.img-loaded)'), 0, function() {
         $('.grid').masonry('layout');
-        carregaImagens($('.card-image-async:not(.img-loaded)'), 0, function() {
+        carregaImagens(function() {
             // $('.grid').masonry('layout');
             console.log('Chamando load more');
         });
     });
-    function carregaImagensPlaceholders(objects, current, callback) {
-        console.log('Carregando placeholder');
-        var total = objects.length;
-        var $obj = $(objects[current]);
+    function carregaImagensPlaceholders($objects, current, callback) {
+        var total = $objects.length;
+
+        var $obj = $objects.first();
 
         var baseUrl = $obj.data('base-url');
-        // console.log('baseUrl', baseUrl);
 
         var $downloadingImage = $("<img/>").attr('src', baseUrl + 'img/main_post_placeholder.png');
 
@@ -45,30 +44,28 @@ $(function(){
                 .css({
                     'height': $obj.height() + 'px',
                 });
-            // console.log('Obj', $obj);
-            // console.log('Current', current);
-            // console.log('Callback', callback);
-            if (current < (total - 1)) {
-                carregaImagensPlaceholders(objects, (current + 1), callback);
-            } else {
-                callback.call();
-            }
-        }).on('error', function() {
-            if (current < (total - 1)) {
-                console.log('CARREGAAANDOOO');
-                carregaImagensPlaceholders(objects, (current + 1), callback);
-            } else {
-                console.log('CARREGOU TUDOO');
-                callback.call();
-            }
         });
-    }
-    function carregaImagens(objects, current, callback) {
-        var total = objects.length;
-        var $obj = $(objects[current]);
+
+        if (current < (total - 1)) {
+            carregaImagensPlaceholders($objects, (current + 1), callback);
+        } else {
+            callback.call();
+        }
         
+    }
+    function carregaImagens(callback) {
+
+        var $obj = $('.card-image-async:not(.img-loaded)').first();
+
+        if ($obj.length < 1) {
+            callback.call();
+            return;
+        }
+
+        $obj.addClass('img-loaded');
+
         var $downloadingImage = $("<img/>").attr('src', $obj.data('original-src'));
-        console.log($downloadingImage);
+
         $downloadingImage.on('load', function(){
             var $this = $(this);
 
@@ -85,24 +82,10 @@ $(function(){
                             'height': 'auto',
                         });
                 });
-
-            if (current < (total - 1)) {
-                window.setTimeout(function(){
-                    carregaImagens(objects, (current + 1), callback);
-                }, 0);
-            } else {
-                callback.call()
-            }
-        }).on('error', function() {
-            console.log('Deu erro');
-            if (current < (total - 1)) {
-                window.setTimeout(function(){
-                    carregaImagens(objects, (current + 1), callback);
-                }, 0);
-            } else {
-                callback.call()
-            }
         });
+        window.setTimeout(function(){
+            carregaImagens(callback);
+        }, 0);
     }
 
     function getDistance($loader, offset) {
