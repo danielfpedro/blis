@@ -80,60 +80,40 @@ class PostsTable extends Table
         ]);
     }
 
-    public function generateLR($post)
-    {
-        $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
-        $image = WideImage::load($post->img);
+    // public function generateLR($post)
+    // {
+    //     $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
+    //     $image = WideImage::load($post->img);
 
-        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $post->img) . '.jpg';
+    //     $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $post->img) . '.jpg';
 
-        $imageQuality = '100';
-        $imageLRQuality = '0';
+    //     $imageQuality = '100';
+    //     $imageLRQuality = '0';
 
-        /**
-         * Original
-         */
-        $image
-            ->saveToFile($dir->path . DS . $imageName, $imageQuality);
+    //     /**
+    //      * Original
+    //      */
+    //     $image
+    //         ->saveToFile($dir->path . DS . $imageName, $imageQuality);
 
-        foreach ($this->images as $key => $value) {
-            $image
-                ->resize($value['w'], $value['h'], 'outside')
-                ->crop('center', 'top', $value['w'], $value['h'])
-                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
-            if ($value['hasLR']) {
-                $image
-                    ->resize($value['w'], $value['h'], 'outside')
-                    ->crop('center', 'top', $value['w'], $value['h'])
-                    ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
-            }
-        }
+    //     foreach ($this->images as $key => $value) {
+    //         $image
+    //             ->resize($value['w'], $value['h'], 'outside')
+    //             ->crop('center', 'top', $value['w'], $value['h'])
+    //             ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
+    //         if ($value['hasLR']) {
+    //             $image
+    //                 ->resize($value['w'], $value['h'], 'outside')
+    //                 ->crop('center', 'top', $value['w'], $value['h'])
+    //                 ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
+    //         }
+    //     }
 
 
-        $post->photo = $imageName;
-        $this->save($post);
+    //     $post->photo = $imageName;
+    //     $this->save($post);
 
-    }
-
-    public function recents($page = 1, $total, $notIn = [], $categoryId = null)
-    {
-        $conditions = [];
-
-        if ($notIn) {
-            $conditions['Posts.id NOT IN'] = $notIn;
-        }
-        if ((int)$categoryId) {
-            $conditions['Posts.category_id'] = $categoryId;
-        }
-
-        return $this
-            ->find('all', [
-                'conditions' => $conditions,
-                'order' => ['Posts.pub_date' => 'DESC'],
-                'offset' => $total * ($page - 1),
-                'limit' => $total
-            ]);
-    }
+    // }
 
     public function getBySlug($request)
     {
@@ -163,6 +143,10 @@ class PostsTable extends Table
         return null; 
     }
 
+    public function getPosts($type, $page = 1, $total, $notIn = [], $categoryId = null)
+    {
+        return $this->$type($page, $total, $notIn = [], $categoryId = null);
+    }
     public function populars($page = 1, $total, $notIn = [], $categoryId = null)
     {
         $conditions = [];
@@ -196,6 +180,32 @@ class PostsTable extends Table
                 ],
                 'conditions' => $conditions,
                 'order' => ['Posts.views DESC'],
+                'offset' => $total * ($page - 1),
+                'limit' => $total
+            ]);
+    }
+    public function recents($page = 1, $total, $notIn = [], $categoryId = null)
+    {
+        $conditions = [];
+
+        if ($notIn) {
+            $conditions['Posts.id NOT IN'] = $notIn;
+        }
+        if ((int)$categoryId) {
+            $conditions['Posts.category_id'] = $categoryId;
+        }
+
+        return $this
+            ->find('all', [
+                'fields' => [
+                    'Posts.id',
+                    'Posts.title',
+                    'Posts.photo',
+                    'Posts.slug',
+                    'Posts.pub_date',
+                ],
+                'conditions' => $conditions,
+                'order' => ['Posts.pub_date' => 'DESC'],
                 'offset' => $total * ($page - 1),
                 'limit' => $total
             ]);

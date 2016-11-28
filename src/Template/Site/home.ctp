@@ -5,8 +5,12 @@
 		'Descubra os melhores conteúdos sobre a Cultura Pop. Jogos, Cinema e Televisão (Séries).',
 		['block' => true]
 	);
+	echo $this->Html->meta(
+		'keywords',
+		'Cultura Pop, Jogos, Cinema, Televisão, Séries, Melhor Conteúdo',
+		['block' => true]
+	);
 ?>
-
 
 <?= $this->Html->script('Site/home', ['block' => true]) ?>
 
@@ -28,7 +32,7 @@
 
 			<div
 				class="load-more"
-				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMore']) ?>"
+				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMore', 'populars']) ?>"
 				data-category=""
 				data-page="2">
 			</div>
@@ -43,7 +47,7 @@
 
 			<div
 				class="load-more-small"
-				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMoreSmall']) ?>"
+				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMore', 'recents']) ?>"
 				data-page="2">
 			</div>	
 

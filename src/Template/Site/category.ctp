@@ -1,4 +1,17 @@
-<?= $this->assign('title', $category->name . ' - Blizz') ?>
+<?php
+	$this->assign('title', $category->name . ' - Blizz');
+	echo $this->Html->meta(
+		'description',
+		'Mostra todos os artigos da categoria ' . $category->name,
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'keywords',
+		$category->name,
+		['block' => true]
+	);
+?>
+
 <?= $this->Html->script('Site/home', ['block' => true]) ?>
 
 <?= $this->cell('Navbar') ?>

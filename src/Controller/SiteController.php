@@ -22,16 +22,22 @@ class SiteController extends AppController
 	{
 		
 	}
-	public function loadMore()
+	public function loadMore($type = null)
 	{
+		if (!in_array($type, ['populars', 'recents'])) {
+			throw new NotFoundException();
+		}
+
 		$this->viewBuilder()->layout('ajax');
+		$this->viewBuilder()->template('load_more_' . $type);
 
 		$notIn = [];
 		if ($this->request->query('not_in')) {
 			$notIn = explode(',', $this->request->query('not_in'));
 		};
 
-		$posts = $this->Posts->populars(
+		$posts = $this->Posts->getPosts(
+			$type,
 			(int)$this->request->query('page'),
 			$this->Posts->perPage['main'],
 			$notIn,
@@ -43,6 +49,24 @@ class SiteController extends AppController
 			'showCategoryName' => !($this->request->query('category'))
 		]);
 	}
+	// public function loadMoreSmall()
+	// {
+	// 	$this->viewBuilder()->layout('ajax');
+
+	// 	$notIn = [];
+	// 	if ($this->request->query('not_in')) {
+	// 		$notIn = explode(',', $this->request->query('not_in'));
+	// 	};
+		
+	// 	$posts = $this->Posts->recents(
+	// 		(int)$this->request->query('page'),
+	// 		$this->Posts->perPage['small'],
+	// 		$notIn,
+	// 		(int)$this->request->query('category')
+	// 	);
+
+	// 	$this->set(['posts' => $posts]);
+	// }
 	public function category()
 	{
 		$this->loadModel('Categories');
@@ -84,24 +108,5 @@ class SiteController extends AppController
 			throw new \Exception('Erro ao salvar o view.');
 		}
 		
-	}
-
-	public function loadMoreSmall()
-	{
-		$this->viewBuilder()->layout('ajax');
-
-		$notIn = [];
-		if ($this->request->query('not_in')) {
-			$notIn = explode(',', $this->request->query('not_in'));
-		};
-		
-		$posts = $this->Posts->recents(
-			(int)$this->request->query('page'),
-			$this->Posts->perPage['small'],
-			$notIn,
-			(int)$this->request->query('category')
-		);
-
-		$this->set(['posts' => $posts]);
 	}
 }

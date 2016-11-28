@@ -24,7 +24,15 @@
             <tr>
                 <td>
                     <?= $this->Html->link(h($post->title),
-                        $post->view_url, [
+                        [
+                            'controller' => 'Site',
+                            'action' => 'post',
+                            'day' => $post->pub_date->format('d'),
+                            'month' => $post->pub_date->format('m'),
+                            'year' => $post->pub_date->format('Y'),
+                            'slug' => $post->slug,
+                            'prefix' => false
+                        ], [
                         'target' => '_blank'
                     ]) ?>
                 </td>

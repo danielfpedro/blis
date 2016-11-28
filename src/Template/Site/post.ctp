@@ -1,4 +1,17 @@
-<?= $this->assign('title', $mainPost->title . ' - Blizz') ?>
+<?php
+	$this->assign('title', $mainPost->title . ' - Blizz');
+	echo $this->Html->meta(
+		'description',
+		$mainPost->subtitle,
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'keywords',
+		$mainPost->tags,
+		['block' => true]
+	);
+?>
+
 <?= $this->Html->script('Site/home', ['block' => true]) ?>
 
 <?= $this->cell('Navbar') ?>

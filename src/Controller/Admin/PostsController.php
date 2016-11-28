@@ -166,16 +166,16 @@ class PostsController extends AppController
         return $matches[1];
     }
 
-    public function generateLowRes()
-    {
-      $this->viewBuilder()->layout('ajax');
+    // public function generateLowRes()
+    // {
+    //   $this->viewBuilder()->layout('ajax');
 
-      $posts = $this->Posts->find('all');
+    //   $posts = $this->Posts->find('all');
 
-      foreach ($posts as $key => $post) {
-        $this->Posts->generateLR($post);
-      }
+    //   foreach ($posts as $key => $post) {
+    //     $this->Posts->generateLR($post);
+    //   }
 
-      $this->autoRender = false;
-    }
+    //   $this->autoRender = false;
+    // }
 }
