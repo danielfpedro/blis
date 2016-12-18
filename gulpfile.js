@@ -1,46 +1,29 @@
-var fs = require('fs');
-var path = require('path');
-var merge = require('merge-stream');
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
+var gulp = require('gulp'),
+    path = require('path'),
+    concat = require('gulp-concat'),
+    recursiveFolder = require('gulp-recursive-folder'),
+
+    options = {
+        pathToFolder: 'webroot/js/dev',
+        readFolder: 'webroot/js/dev',
+        target: 'webroot/js'
+    };
+
 var uglify = require('gulp-uglify');
 
-var scriptsPath = 'webroot/js';
 
-function getFolders(dir) {
-    return fs.readdirSync(dir)
-      .filter(function(file) {
-        return fs.statSync(path.join(dir, file)).isDirectory();
-      });
-}
-
-gulp.task('default', ['scripts']);
-
-gulp.task('scripts', function() {
-   var folders = getFolders(scriptsPath);
-
-   var tasks = folders.map(function(folder) {
-      return gulp.src(path.join(scriptsPath, folder, '/**/*.js'))
-        // concat into foldername.js
-        .pipe(concat(folder + '.js'))
-        // write to output
-        .pipe(gulp.dest(scriptsPath)) 
-        // minify
-        .pipe(uglify())    
-        // rename to folder.min.js
-        .pipe(rename(folder + '.min.js')) 
-        // write to output again
-        .pipe(gulp.dest(scriptsPath));    
-   });
-
-   // process all remaining files in scriptsPath root into main.js and main.min.js files
-   var root = gulp.src(path.join(scriptsPath, '/*.js'))
-        // .pipe(concat('main.js'))
-        .pipe(gulp.dest(scriptsPath))
+gulp.task('generateConcatOfFolders', function(){
+    return recursiveFolder({
+        base: options.pathToFolder,
+        exclude: [] // optional array of folders to exclude 
+    }, function(folderFound){
+        return gulp.src(folderFound.path + "/*.js")
+            .pipe(concat(folderFound.name + ".js"));
+    })()
+        .pipe(concat("bundle.js"))
         .pipe(uglify())
-        .pipe(rename('main.min.js'))
-        .pipe(gulp.dest(scriptsPath));
-
-   return merge(tasks, root);
+        .pipe(gulp.dest(options.target));
 });
+
+// Default Task
+gulp.task('default', ['generateConcatOfFolders']);

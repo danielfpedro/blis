@@ -12,7 +12,7 @@
 	);
 ?>
 
-<?= $this->Html->script('Site/home', ['block' => true]) ?>
+<?= $this->Html->script('dev/Site/home', ['block' => true]) ?>
 
 <?= $this->cell('Navbar') ?>
 

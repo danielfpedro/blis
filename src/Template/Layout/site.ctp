@@ -34,6 +34,9 @@
     <?php if (filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN)): ?>
         <?= $this->Html->script('../lib/jquery/dist/jquery.min') ?>
         <?= $this->Html->script('../lib/bootstrap/dist/js/bootstrap.min') ?>
+        
+        <?= $this->Html->script('../lib/masonry/dist/masonry.pkgd.min') ?>
+        <?= $this->fetch('script') ?>
     <?php else: ?>
         <!-- Jquery -->
         <script
@@ -42,11 +45,12 @@
           crossorigin="anonymous"></script>
         <!-- Bootstrap -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <?= $this->Html->script('../lib/masonry/dist/masonry.pkgd.min') ?>
+        <?= $this->Html->script('bundle') ?>
+
     <?php endif ?>
 
-    <?= $this->Html->script('../lib/masonry/dist/masonry.pkgd.min') ?>
-
-    <?= $this->fetch('script') ?>
 
 </body>
 </html>

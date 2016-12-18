@@ -21,8 +21,11 @@
   "homepage": "https://github.com/danielfpedro/blis#readme",
   "dependencies": {
     "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0",
-    "merge-stream": "^1.0.1"
+    "merge-stream": "^1.0.1",
+    "merge2": "^1.0.2",
+    "gulp-recursive-folder" : "*"
   }
 }
