@@ -25,5 +25,13 @@ gulp.task('generateConcatOfFolders', function(){
         .pipe(gulp.dest(options.target));
 });
 
+gulp.task('bundleCss', function() {
+  return gulp.src([
+      'webroot/css/dev/style.css'
+    ])
+    .pipe(concat('bundle.css'))
+    .pipe(gulp.dest('webroot/css'));
+});
+
 // Default Task
-gulp.task('default', ['generateConcatOfFolders']);
+gulp.task('default', ['generateConcatOfFolders', 'bundleCss']);

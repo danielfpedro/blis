@@ -204,6 +204,11 @@ class PostsTable extends Table
                     'Posts.slug',
                     'Posts.pub_date',
                 ],
+                'contain' => [
+                    'Categories' => function($q){
+                        return $q->select(['id', 'name', 'slug']);
+                    }
+                ],
                 'conditions' => $conditions,
                 'order' => ['Posts.pub_date' => 'DESC'],
                 'offset' => $total * ($page - 1),

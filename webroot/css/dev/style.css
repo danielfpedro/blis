@@ -1,0 +1,243 @@
+body {
+	background-color: #f2f2f2!important;
+	font-family: 'Bree Serif', serif;
+	padding-top: 50px;
+}
+.grid-item {
+	overflow: hidden;
+	height: auto;
+	width: 33.33333%;
+	float:left;
+	/*background-color: blue;*/
+}
+
+.card-small-image {
+	width: 60px;
+	height: 60px;
+	background-color: #E0E0E0!important;
+}
+
+	.col-md-9 {
+		width: 78%;
+	}
+	.col-md-3 {
+		width: 21%;
+	}
+	.col-small {
+		margin-left: -15px
+	}
+
+@media (max-width: 767px) {
+	.grid-item {
+		width: 100%;
+	}	
+	.grid-item-wrap {
+		margin-right: 0!important;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.grid-item {
+		width: 50%;
+	}	
+	.card-small-image {
+		width: 50px;
+	}
+
+}
+@media (min-width: 992px) and (max-width: 1999px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+
+.card-image {
+	background-color: #E0E0E0;
+}
+
+.offset-to-top {
+	margin-top: 40px;
+}
+.grid {
+	/*margin: 0 6px;*/
+	position: relative;
+	overflow: hidden;
+	height: auto;
+}
+.grid-item-wrap {
+	margin-right: 25px;
+	/*margin-bottom: 15px;*/
+	/*background-color: red;*/
+	overflow: hidden;
+}
+
+.horizontal-banner {
+	height: 100px;
+	width: 100%;
+	background-color: pink;
+}
+.title-category {
+	margin: 0;
+	font-size: 22px;
+	color: #757575;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-family: 'Rubik', sans-serif!important;	
+}
+
+.section-title {
+	margin: 0;
+	font-size: 13px;
+	color: #d50000;
+	margin-bottom: 15px;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-family: 'Rubik', sans-serif!important;
+}
+
+/*Article main*/
+.article-wrap {
+	border: 1px solid #dfdfdf;
+	background-color: #F8F8F8;
+
+	/*-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);*/
+}
+.card-image {
+	margin: 0;
+	padding: 0;
+	height: 170px;
+	background-size: cover;
+	background-position: top center;
+
+	margin-bottom: 10px;
+}
+a.article-small-category {
+	font-family: 'Rubik', sans-serif!important;
+	text-transform: uppercase;
+	font-size: 9px;
+	color: #757575;	
+	margin: 0:
+	padding: 0;
+}
+a.article-category {
+	font-family: 'Rubik', sans-serif!important;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #757575;
+}
+a.article-title {
+	color: #212121;
+	text-decoration: none;
+}
+a.article-title:hover {
+	text-decoration: underline;
+}
+.article-title > h1{
+	margin: 0;
+	padding: 0;
+
+	/*padding-top: 15px;*/
+	padding-bottom: 10px;
+
+	font-weight: 500;
+	font-size: 24px;
+	color: #212121;
+	line-height: 28px;
+}
+
+
+.article-subtitle {
+	font-size: 14px;
+	color: #757575;
+	margin: 0;
+	font-weight: normal;
+	font-family: 'Rubik', sans-serif!important;
+}
+.article-body {
+	padding: 0 20px 30px 20px;
+	
+}
+
+/*Article Small*/
+a.article-title-small {
+	text-decoration: none;
+}
+.article-title-small > h1 {
+	font-size: 15px;
+	line-height: 22px;
+	color: #212121;
+	/*font-weight: bold;*/
+}
+/*Navbar*/
+.navbar ul.navbar-nav > li > a {
+	font-size: 14px;
+	color: #212121;
+	font-family: 'Rubik', sans-serif!important;
+}
+.navbar-default {
+    /*background-color: #000;*/
+    border-color: #dfdfdf;
+}
+.navbar-social-items {
+	line-height: 10;
+}
+.navbar-social-items > li {
+	line-height: 0;
+	margin-left: -5px;
+
+}
+.navbar-social-items > li > a{
+	line-height: 0;
+}
+.navbar-social-items > li > a > span{
+	line-height: 18px;
+	font-size: 18px!important;
+	color: #616161;
+}
+.navbar-social-items > li > a > span.fa-facebook:hover{
+	color: #01579B;
+}
+.navbar-social-items > li > a > span.fa-twitter:hover{
+	color: #039BE5
+}
+.navbar-social-items > li > a > span.fa-youtube-play:hover{
+	color: #D50000;
+}
+.navbar-brand {
+	margin-top: -7px;
+}
+
+a.main-post-title {
+	color: #212121;
+	text-decoration: none;
+}
+a.main-post-title:hover {
+	text-decoration: underline;
+}
+.main-post-title > h1{
+	margin: 0;
+	padding: 0;
+
+	/*padding-top: 15px;*/
+	padding-bottom: 10px;
+
+	font-weight: 500;
+	font-size: 34px;
+	color: #212121;
+	line-height: 40px;
+}
+
+.card-image-async-wrap, .card-image-small-async-wrap {
+	background-color: #E0E0E0;
+}
+.card-image-async-wrap {
+	min-height: 150px;
+	margin-bottom: 10px;
+}
+.card-image-small-async-wrap, .card-image-small {
+	width: 60px;
+	height: 60px;
+}

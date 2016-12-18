@@ -12,12 +12,15 @@
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif:400,500,700" rel="stylesheet">
 
     
-
-    <?= $this->Html->css('style') ?>
     <?php if (filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN)): ?>
+        <?= $this->Html->css('dev/style.css') ?>
+
         <?= $this->Html->css('../lib/font-awesome/css/font-awesome.min') ?>
         <?= $this->Html->css('../lib/bootstrap/dist/css/bootstrap.min') ?>
     <?php else: ?>
+
+        <?= $this->Html->css('bundle.css') ?>
+
         <!-- Font Awesome -->
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Bootstrap -->
@@ -36,7 +39,6 @@
         <?= $this->Html->script('../lib/bootstrap/dist/js/bootstrap.min') ?>
         
         <?= $this->Html->script('../lib/masonry/dist/masonry.pkgd.min') ?>
-        <?= $this->fetch('script') ?>
     <?php else: ?>
         <!-- Jquery -->
         <script
@@ -47,9 +49,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
         <?= $this->Html->script('../lib/masonry/dist/masonry.pkgd.min') ?>
-        <?= $this->Html->script('bundle') ?>
 
     <?php endif ?>
+
+    <?= $this->Html->script('bundle') ?>
+
+    <?= $this->fetch('script') ?>
 
 
 </body>

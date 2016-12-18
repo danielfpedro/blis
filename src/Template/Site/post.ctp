@@ -12,15 +12,13 @@
 	);
 ?>
 
-<?= $this->Html->script('Site/home', ['block' => true]) ?>
-
 <?= $this->cell('Navbar') ?>
 
 <div class="offset-to-top"></div>
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 			<div class="" style="width: 100%">
 				<a href="<?= $this->Url->build($mainPost->viewUrl) ?>" target="_blank">
 					<div
@@ -55,7 +53,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-9 col-sm-9">
+		<div class="col-xs-12 col-md-9 col-sm-9 hidden-xs">
 			<div class="section-title">
 				Populares
 			</div>
@@ -67,7 +65,7 @@
 				data-page="2">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-small">
+		<div class="col-xs-12 col-md-3 col-sm-3">
 			<div class="section-title">
 				Últimas
 			</div>

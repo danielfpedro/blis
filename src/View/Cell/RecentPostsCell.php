@@ -30,9 +30,11 @@ class RecentPostsCell extends Cell
             1,
             $this->Posts->perPage['small'],
             $notIn,
-            $categoryId
+            (int)$categoryId
         );
 
-        $this->set(compact('posts'));
+        $showCategoryName = !((int)$categoryId);
+
+        $this->set(compact('posts', 'showCategoryName'));
     }
 }
