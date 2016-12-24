@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title', 'Blizz - Descubra os melhores conteúdos sobre a Cultura Pop');
+	$this->assign('title', 'Go, go Dog! - Descubra os melhores conteúdos sobre a Cultura Pop');
 	echo $this->Html->meta(
 		'description',
 		'Descubra os melhores conteúdos sobre a Cultura Pop. Jogos, Cinema e Televisão (Séries).',

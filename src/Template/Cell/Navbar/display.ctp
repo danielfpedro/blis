@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <?php
-                $image = $this->Html->image('logo.jpg', ['width' => 32, 'class' => 'brand'])
+                $image = $this->Html->image('logo.png', ['height' => 30, 'class' => 'brand'])
             ?>
             <?= $this->Html->link($image, [
                 'controller' => 'Site',
@@ -17,7 +17,7 @@
             ],
             [
                 'class' => 'navbar-brand',
-                'title' => 'Blizz',
+                'title' => 'GoGoDog',
                 'escape' => false
             ]) ?>
 

@@ -27,6 +27,10 @@ body {
 		margin-left: -15px
 	}
 
+.container-fluid{
+	margin-left: 20px!important;
+	margin-right: 20px!important;
+}
 @media (max-width: 767px) {
 	.grid-item {
 		width: 100%;
@@ -207,7 +211,7 @@ a.article-title-small {
 	color: #D50000;
 }
 .navbar-brand {
-	margin-top: -7px;
+	margin-top: -5px;
 }
 
 a.main-post-title {
