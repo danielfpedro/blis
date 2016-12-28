@@ -1,2 +1,9 @@
-/webroot/tey
-carai.txt
+.bowerrc
+.editorconfig
+.bower.json
+/bin/*
+/logs/*
+/node_modules/*
+/tests/*
+/tmp/*
+/webroot/css/dev/*
