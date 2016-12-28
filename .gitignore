@@ -2,3 +2,5 @@
 /config/app.php
 /tmp/*
 /logs/*
+bower.json
+README.md
