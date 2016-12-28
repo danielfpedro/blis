@@ -31,22 +31,20 @@ use WideImage\WideImage;
  */
 class PostsTable extends Table
 {
+    public $imageQuality = '100';
 
     public $images = [
         'main_post' => [
             'w' => 400,
             'h' => 250,
-            'hasLR' => true
         ],
         'small_post' => [
             'w' => 120,
             'h' => 120,
-            'hasLR' => true
         ],
         'view_post' => [
             'w' => 600,
             'h' => 270,
-            'hasLR' => false
         ],
     ];
     public $perPage = [
@@ -80,40 +78,40 @@ class PostsTable extends Table
         ]);
     }
 
-    // public function generateLR($post)
-    // {
-    //     $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
-    //     $image = WideImage::load($post->img);
+    public function resizeAllImages($post)
+    {
+        $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
+        $image = WideImage::load($post->img);
 
-    //     $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $post->img) . '.jpg';
+        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $post->img) . '.jpg';
 
-    //     $imageQuality = '100';
-    //     $imageLRQuality = '0';
+        $imageQuality = '100';
+        $imageLRQuality = '0';
 
-    //     /**
-    //      * Original
-    //      */
-    //     $image
-    //         ->saveToFile($dir->path . DS . $imageName, $imageQuality);
+        /**
+         * Original
+         */
+        $image
+            ->saveToFile($dir->path . DS . $imageName, $imageQuality);
 
-    //     foreach ($this->images as $key => $value) {
-    //         $image
-    //             ->resize($value['w'], $value['h'], 'outside')
-    //             ->crop('center', 'top', $value['w'], $value['h'])
-    //             ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
-    //         if ($value['hasLR']) {
-    //             $image
-    //                 ->resize($value['w'], $value['h'], 'outside')
-    //                 ->crop('center', 'top', $value['w'], $value['h'])
-    //                 ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
-    //         }
-    //     }
+        foreach ($this->images as $key => $value) {
+            $image
+                ->resize($value['w'], $value['h'], 'outside')
+                ->crop('center', 'top', $value['w'], $value['h'])
+                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
+            if ($value['hasLR']) {
+                $image
+                    ->resize($value['w'], $value['h'], 'outside')
+                    ->crop('center', 'top', $value['w'], $value['h'])
+                    ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
+            }
+        }
 
 
-    //     $post->photo = $imageName;
-    //     $this->save($post);
+        $post->photo = $imageName;
+        $this->save($post);
 
-    // }
+    }
 
     public function getBySlug($request)
     {
@@ -224,26 +222,17 @@ class PostsTable extends Table
         $ext = pathinfo($entity->img, PATHINFO_EXTENSION);
         $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $entity->img) . '.jpg';
 
-        $imageQuality = '100';
-        $imageLRQuality = '0';
-
         /**
          * Original
          */
         $image
-            ->saveToFile($dir->path . DS . $imageName, $imageQuality);
+            ->saveToFile($dir->path . DS . $imageName, $this->imageQuality);
 
         foreach ($this->images as $key => $value) {
             $image
                 ->resize($value['w'], $value['h'], 'outside')
                 ->crop('center', 'top', $value['w'], $value['h'])
-                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
-            if ($value['hasLR']) {
-                $image
-                    ->resize($value['w'], $value['h'], 'outside')
-                    ->crop('center', 'top', $value['w'], $value['h'])
-                    ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
-            }
+                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $this->imageQuality);
         }
 
         $entity->photo = $imageName;
