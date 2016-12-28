@@ -138,6 +138,7 @@ a.article-title {
 }
 a.article-title:hover {
 	text-decoration: underline;
+	color: #212121;
 }
 .article-title > h1{
 	margin: 0;
@@ -150,6 +151,8 @@ a.article-title:hover {
 	font-size: 24px;
 	color: #212121;
 	line-height: 28px;
+
+	margin-top: 10px;
 }
 
 
@@ -167,7 +170,10 @@ a.article-title:hover {
 
 /*Article Small*/
 a.article-title-small {
-	text-decoration: none;
+	
+}
+a.article-title-small:hover{
+	color: #212121;
 }
 .article-title-small > h1 {
 	font-size: 15px;
@@ -199,7 +205,8 @@ a.article-title-small {
 .navbar-social-items > li > a > span{
 	line-height: 18px;
 	font-size: 18px!important;
-	color: #616161;
+	color: #212121;
+	font-weight: normal;
 }
 .navbar-social-items > li > a > span.fa-facebook:hover{
 	color: #01579B;
@@ -211,7 +218,7 @@ a.article-title-small {
 	color: #D50000;
 }
 .navbar-brand {
-	margin-top: -5px;
+	margin-top: -8px;
 }
 
 a.main-post-title {
