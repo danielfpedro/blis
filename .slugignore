@@ -1,9 +1,11 @@
 .bowerrc
 .editorconfig
 .bower.json
-/bin/*
-/logs/*
-/node_modules/*
+/bin
+/logs
+/node_modules
 /tests
-/tmp/*
-/webroot/css/dev/*
+/tmp
+/webroot/css/dev
+phpunit.xml.dist
+node_modules
