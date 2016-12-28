@@ -4,6 +4,6 @@
 /bin/*
 /logs/*
 /node_modules/*
-/test
+/tests
 /tmp/*
 /webroot/css/dev/*
