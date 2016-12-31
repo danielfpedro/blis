@@ -10,6 +10,69 @@
 		$mainPost->tags,
 		['block' => true]
 	);
+
+	// Twitter
+	echo $this->Html->meta(
+		'twitter:card',
+		$this->Url->build($mainPost->view_post_image, ['fullBase' => true]),
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'twitter:site',
+		'@gogodogplease',
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'twitter:title',
+		$mainPost->title,
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'twitter:description',
+		$mainPost->subtitle,
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'twitter:creator',
+		'@gogodogplease',
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'twitter:image',
+		$this->Url->build($mainPost->view_post_image, ['fullBase' => true]),
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'twitter:domain',
+		'gogodog.com.br',
+		['block' => true]
+	);
+	// Facebook
+	echo $this->Html->meta(
+		'og:url',
+		$this->Url->build($mainPost->postUrl, ['fullBase' => true]),
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'og:type',
+		'website',
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'og:title',
+		$mainPost->title,
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'og:description',
+		$mainPost->subtitle,
+		['block' => true]
+	);
+	echo $this->Html->meta(
+		'og:image',
+		$this->Url->build($mainPost->view_post_image, ['fullBase' => true]),
+		['block' => true]
+	);
 ?>
 
 <?= $this->cell('Navbar') ?>
@@ -23,7 +86,7 @@
 				<a href="<?= $this->Url->build($mainPost->viewUrl) ?>" target="_blank">
 					<div
 						class="card-image"
-						style="height: 250px; background-image: url(<?= $this->Url->build($mainPost->view_post_image) ?>)">
+						style="margin-bottom: 15px;height: 350px; background-image: url(<?= $this->Url->build($mainPost->view_post_image) ?>)">
 					</div>
 					<a
 						href="<?= $this->Url->build($mainPost->viewUrl) ?>"
@@ -33,25 +96,32 @@
 							<?= $mainPost->title ?>
 						</h1>
 					</a>
-					<!-- <p>
-						<?= $mainPost->subtitle ?>
-					</p> -->
+					<div class="text-center" style="margin-top: 20px;">
+						<a
+							href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build($mainPost->postUrl, ['fullBase' => true]) ?>"
+							target="_blank"
+							class="btn btn-primary btn-sm">
+							<span class="fa fa-share-square-o"></span>&nbsp;&nbsp;Facebook
+						</a>
+						<a
+							via="gogodogplease"
+							href="https://twitter.com/intent/tweet?text=<?= urlencode('Acabei de ler em -')?>&via=gogodogplease&url=<?= urlencode($this->Url->build($mainPost->postUrl, ['fullBase' => true])) ?>"
+							target="_blank"
+							class="btn btn-info btn-sm">
+							<span class="fa fa-share-square-o"></span>&nbsp;&nbsp;Twitter
+						</a>
+					</div>
 				</a>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="offset-to-top"></div>
-<div class="offset-to-top"></div>
-<div class="offset-to-top"></div>
-<div class="offset-to-top"></div>
-
 <!-- <div class="horizontal-banner">
 	
 </div> -->
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 100px;">
 	<div class="row">
 		<div class="col-xs-12 col-md-9 col-sm-9 hidden-xs">
 			<div class="section-title">

@@ -44,7 +44,7 @@ class PostsTable extends Table
         ],
         'view_post' => [
             'w' => 600,
-            'h' => 270,
+            'h' => 350,
         ],
     ];
     public $perPage = [
@@ -92,7 +92,7 @@ class PostsTable extends Table
          * Original
          */
         $image
-            ->saveToFile($dir->path . DS . $imageName, $imageQuality);
+            ->saveToFile($dir->path . DS . 'original_' . DS . $imageName, $imageQuality);
 
         foreach ($this->images as $key => $value) {
             $image
@@ -106,7 +106,6 @@ class PostsTable extends Table
                     ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
             }
         }
-
 
         $post->photo = $imageName;
         $this->save($post);
@@ -226,7 +225,7 @@ class PostsTable extends Table
          * Original
          */
         $image
-            ->saveToFile($dir->path . DS . $imageName, $this->imageQuality);
+            ->saveToFile($dir->path . DS . 'original_' . $imageName, $this->imageQuality);
 
         foreach ($this->images as $key => $value) {
             $image

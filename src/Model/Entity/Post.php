@@ -60,6 +60,21 @@ class Post extends Entity
             'prefix' => false
         ];
     }
+    protected function _getPostUrl()
+    {
+        if (!$this->_properties['pub_date']) {
+            return [];
+        }
+        return [
+            'controller' => 'Site',
+            'action' => 'post',
+            'year' => $this->_properties['pub_date']->format('Y'),
+            'month' => $this->_properties['pub_date']->format('m'),
+            'day' => $this->_properties['pub_date']->format('d'),
+            'slug' => $this->_properties['slug'],
+            'prefix' => false
+        ];
+    }
     /**
      * Main post
      */
