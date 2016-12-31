@@ -108,6 +108,6 @@ class Post extends Entity
         if ($lr) {
             $prefix .= '_lr';
         }
-        return '/files/images/' . $prefix . '_' . $this->_properties['photo'];
+        return '/img/images/' . $prefix . '_' . $this->_properties['photo'];
     }
 }

@@ -78,40 +78,6 @@ class PostsTable extends Table
         ]);
     }
 
-    public function resizeAllImages($post)
-    {
-        $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
-        $image = WideImage::load($post->img);
-
-        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $post->img) . '.jpg';
-
-        $imageQuality = '100';
-        $imageLRQuality = '0';
-
-        /**
-         * Original
-         */
-        $image
-            ->saveToFile($dir->path . DS . 'original_' . DS . $imageName, $imageQuality);
-
-        foreach ($this->images as $key => $value) {
-            $image
-                ->resize($value['w'], $value['h'], 'outside')
-                ->crop('center', 'top', $value['w'], $value['h'])
-                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $imageQuality);
-            if ($value['hasLR']) {
-                $image
-                    ->resize($value['w'], $value['h'], 'outside')
-                    ->crop('center', 'top', $value['w'], $value['h'])
-                    ->saveToFile($dir->path . DS . $key . '_lr_' . $imageName, $imageLRQuality);
-            }
-        }
-
-        $post->photo = $imageName;
-        $this->save($post);
-
-    }
-
     public function getBySlug($request)
     {
         $posts = $this->find('all', [
@@ -215,7 +181,7 @@ class PostsTable extends Table
 
     public function beforeSave(Event $event, EntityInterface $entity)
     {
-        $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
+        $dir = new Folder(WWW_ROOT . 'img' . DS . 'images', true, 0755);
         $image = WideImage::load($entity->img);
 
         $ext = pathinfo($entity->img, PATHINFO_EXTENSION);

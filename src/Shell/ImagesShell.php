@@ -51,7 +51,7 @@ class ImagesShell extends Shell
 
         $this->out($validImages);
 
-        $folder = new Folder(WWW_ROOT . 'files' . DS . 'images');
+        $folder = new Folder(WWW_ROOT . 'img' . DS . 'images');
         $folderFiles = $folder->find('.*\.jpg', true);
 
         foreach ($folderFiles as $key => $value) {
@@ -71,7 +71,7 @@ class ImagesShell extends Shell
             ->find('all')
             ->select(['id', 'img']);
 
-        $dir = new Folder(WWW_ROOT . 'files' . DS . 'images', true, 0755);
+        $dir = new Folder(WWW_ROOT . 'img' . DS . 'images', true, 0755);
 
         foreach ($query as $row) {
             
