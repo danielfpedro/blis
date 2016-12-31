@@ -218,7 +218,8 @@ a.article-title-small:hover{
 	color: #D50000;
 }
 .navbar-brand {
-	margin-top: -8px;
+	margin-top: -2px;
+	margin-right: 40px;
 }
 
 a.main-post-title {

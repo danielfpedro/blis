@@ -100,15 +100,15 @@
 						<a
 							href="https://www.facebook.com/sharer/sharer.php?u=<?= $this->Url->build($mainPost->postUrl, ['fullBase' => true]) ?>"
 							target="_blank"
-							class="btn btn-primary btn-sm">
-							<span class="fa fa-share-square-o"></span>&nbsp;&nbsp;Facebook
+							class="btn btn-primary">
+							<span class="fa fa-facebook"></span> Compartilhar no Facebook
 						</a>
 						<a
 							via="gogodogplease"
 							href="https://twitter.com/intent/tweet?text=<?= urlencode('Acabei de ler em -')?>&via=gogodogplease&url=<?= urlencode($this->Url->build($mainPost->postUrl, ['fullBase' => true])) ?>"
 							target="_blank"
-							class="btn btn-info btn-sm">
-							<span class="fa fa-share-square-o"></span>&nbsp;&nbsp;Twitter
+							class="btn btn-info">
+							<span class="fa fa-twitter"></span> Compartilhar Twitter
 						</a>
 					</div>
 				</a>
