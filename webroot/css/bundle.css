@@ -218,8 +218,8 @@ a.article-title-small:hover{
 	color: #D50000;
 }
 .navbar-brand {
-	margin-top: -2px;
-	margin-right: 40px;
+	margin-top: -6px;
+	margin-right: 30px;
 }
 
 a.main-post-title {
@@ -238,7 +238,7 @@ a.main-post-title:hover {
 	padding-bottom: 10px;
 
 	font-weight: 500;
-	font-size: 34px;
+	font-size: 30px;
 	color: #212121;
 	line-height: 40px;
 }
