@@ -1,5 +1,6 @@
 <?php
-	$this->assign('title', $category->name . ' - Blizz');
+	$this->assign('title', $category->name . ' - Go, go Dog!');
+
 	echo $this->Html->meta(
 		'description',
 		'Mostra todos os artigos da categoria ' . $category->name,

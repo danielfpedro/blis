@@ -4,8 +4,8 @@ var gulp = require('gulp'),
     recursiveFolder = require('gulp-recursive-folder'),
 
     options = {
-        pathToFolder: 'webroot/js/dev',
-        readFolder: 'webroot/js/dev',
+        pathToFolder: 'webroot/assets_dev/js',
+        readFolder: 'webroot/assets_dev/js',
         target: 'webroot/js'
     };
 
@@ -27,7 +27,7 @@ gulp.task('generateConcatOfFolders', function(){
 
 gulp.task('bundleCss', function() {
   return gulp.src([
-      'webroot/css/dev/style.css'
+      'webroot/assets_dev/css/style.css'
     ])
     .pipe(concat('bundle.css'))
     .pipe(gulp.dest('webroot/css'));

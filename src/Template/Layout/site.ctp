@@ -13,7 +13,7 @@
 
     
     <?php if (filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN)): ?>
-        <?= $this->Html->css('dev/style.css') ?>
+        <?= $this->Html->css('../assets_dev/css/style.css') ?>
 
         <?= $this->Html->css('../lib/font-awesome/css/font-awesome.min') ?>
         <?= $this->Html->css('../lib/bootstrap/dist/css/bootstrap.min') ?>
@@ -32,6 +32,8 @@
 
 </head>
 <body>
+    <?= $this->element('Site/google_analytics') ?>
+
     <?= $this->fetch('content') ?>
 
     <?php if (filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN)): ?>
