@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif:400,500,700" rel="stylesheet">
 
     
-    <?php if (filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN)): ?>
+    <?php if (filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN)): ?>
         <?= $this->Html->css('../assets_dev/css/style.css') ?>
 
         <?= $this->Html->css('../lib/font-awesome/css/font-awesome.min') ?>
@@ -36,7 +36,7 @@
 
     <?= $this->fetch('content') ?>
 
-    <?php if (filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN)): ?>
+    <?php if (filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN)): ?>
         <?= $this->Html->script('../lib/jquery/dist/jquery.min') ?>
         <?= $this->Html->script('../lib/bootstrap/dist/js/bootstrap.min') ?>
         

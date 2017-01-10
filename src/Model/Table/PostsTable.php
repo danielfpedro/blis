@@ -84,7 +84,7 @@ class PostsTable extends Table
             'fields' => ['Posts.id', 'Posts.pub_date'],
             'conditions' => [
                 'slug' => $request->param('slug')
-            ]            
+            ]
         ]);
 
         if ($posts) {
@@ -103,7 +103,7 @@ class PostsTable extends Table
             }
         }
 
-        return null; 
+        return null;
     }
 
     public function getPosts($type, $page = 1, $total, $notIn = [], $categoryId = null)
@@ -116,7 +116,7 @@ class PostsTable extends Table
 
         if ($notIn) {
             $conditions['Posts.id NOT IN'] = $notIn;
-        } 
+        }
         if ((int)$categoryId) {
             $conditions['Posts.category_id'] = $categoryId;
         }
@@ -181,26 +181,31 @@ class PostsTable extends Table
 
     public function beforeSave(Event $event, EntityInterface $entity)
     {
-        $dir = new Folder(WWW_ROOT . 'img' . DS . 'images', true, 0755);
-        $image = WideImage::load($entity->img);
+        if (isset($entity->update_image) && $entity->update_image) {
+            $dir = new Folder(WWW_ROOT . 'img' . DS . 'images', true, 0755);
+            $image = WideImage::load($entity->img);
 
-        $ext = pathinfo($entity->img, PATHINFO_EXTENSION);
-        $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $entity->img) . '.jpg';
+            $ext = pathinfo($entity->img, PATHINFO_EXTENSION);
+            $imageName = md5((new \Datetime())->format('Y-m-d H:i:s') . $entity->img) . '.jpg';
 
-        /**
-         * Original
-         */
-        $image
-            ->saveToFile($dir->path . DS . 'original_' . $imageName, $this->imageQuality);
+            // debug(WWW_ROOT);
+            // exit();
 
-        foreach ($this->images as $key => $value) {
+            /**
+            * Original
+            */
             $image
-                ->resize($value['w'], $value['h'], 'outside')
-                ->crop('center', 'top', $value['w'], $value['h'])
-                ->saveToFile($dir->path . DS . $key . '_' . $imageName, $this->imageQuality);
-        }
+                ->saveToFile($dir->path . DS . 'original_' . $imageName, $this->imageQuality);
 
-        $entity->photo = $imageName;
+            foreach ($this->images as $key => $value) {
+                $image
+                    ->resize($value['w'], $value['h'], 'outside')
+                    ->crop('center', 'top', $value['w'], $value['h'])
+                    ->saveToFile($dir->path . DS . $key . '_' . $imageName, $this->imageQuality);
+            }
+
+            $entity->photo = $imageName;
+        }
     }
 
     /**

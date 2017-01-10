@@ -98,7 +98,7 @@ class SiteController extends AppController
 		if (!$post) {
 			throw new NotFoundException();
 		}
-		
+
 		$post->views = (int)$post->views + 1;
 		$post->view_timestamp = (new \Datetime())->format('Y-m-d H:i:s');
 
