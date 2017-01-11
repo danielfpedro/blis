@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title', $category->name . ' - Go, go Dog!');
+	$this->assign('title', $category->name . ' - Go go Dog!');
 
 	echo $this->Html->meta(
 		'description',
@@ -18,7 +18,7 @@
 <div class="offset-to-top"></div>
 
 <!-- <div class="horizontal-banner">
-	
+
 </div> -->
 
 <div class="container-fluid">
@@ -54,7 +54,7 @@
 				data-category="<?= (int)$category->id ?>"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMoreSmall']) ?>"
 				data-page="2">
-			</div>	
+			</div>
 
 		</div>
 	</div>

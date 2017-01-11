@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title', 'Go, go Dog! - Descubra os melhores conteúdos sobre a Cultura Pop');
+	$this->assign('title', 'Go go Dog! - Descubra os melhores conteúdos sobre a Cultura Pop');
 	echo $this->Html->meta(
 		'description',
 		'Descubra os melhores conteúdos sobre a Cultura Pop. Jogos, Cinema e Televisão (Séries).',
@@ -17,7 +17,7 @@
 <div class="offset-to-top"></div>
 
 <!-- <div class="horizontal-banner">
-	
+
 </div> -->
 
 <div class="container-fluid">
@@ -49,7 +49,7 @@
 				class="load-more-small"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMore', 'recents']) ?>"
 				data-page="2">
-			</div>	
+			</div>
 
 		</div>
 	</div>

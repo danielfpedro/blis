@@ -1,6 +1,6 @@
 <?php
-	$this->assign('title', $mainPost->title . ' - Go, go Dog!');
-	
+	$this->assign('title', $mainPost->title . ' - Go go Dog!');
+
 	echo $this->Html->meta(
 		'description',
 		$mainPost->subtitle,
@@ -119,7 +119,7 @@
 </div>
 
 <!-- <div class="horizontal-banner">
-	
+
 </div> -->
 
 <div class="container-fluid" style="margin-top: 100px;">
@@ -148,7 +148,7 @@
 				class="load-more-small"
 				data-base-url="<?= $this->url->build(['controller' => 'Site', 'action' => 'loadMoreSmall']) ?>"
 				data-page="2">
-			</div>	
+			</div>
 
 		</div>
 	</div>

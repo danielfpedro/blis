@@ -41,18 +41,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-social-items">
                 <li>
-                    <a href="">
+                    <a href="https://www.facebook.com/gogodogplease" target="_blank">
                         <span class="fa fa-facebook"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="https://twitter.com/gogodogplease" target="_blank">
                         <span class="fa fa-twitter"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <span class="fa fa-youtube-play"></span>
                     </a>
                 </li>
             </ul>
