@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title', $mainPost->title . ' - Go go Dog!');
+	$this->assign('title', $mainPost->title . ' - Go Go Dog!');
 
 	echo $this->Html->meta(
 		'description',

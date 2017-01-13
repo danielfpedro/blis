@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title', $category->name . ' - Go go Dog!');
+	$this->assign('title', $category->name . ' - Go Go Dog!');
 
 	echo $this->Html->meta(
 		'description',
